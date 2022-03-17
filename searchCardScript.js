@@ -17,6 +17,7 @@ function generateBanlist() {
     saveAs(blob, "banlist.txt");
 }
 
+
 /*This is a jQuery Trial function!
 $("limitation").click(function () {
     console.log("jQuery Clicked!!");
