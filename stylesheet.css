@@ -1,16 +1,47 @@
 body {
     background-image: url(https://i.imgur.com/cYCloJ8.jpg);
+    background-size: cover;
 }
 
 #topSearchImage {
 text-align: center;
 }
 
+/* #banImage {
+    width: 500px;
+    margin:auto;
+} */
+
 #generateBanlist {
     text-align: center;
     padding-top: 5px;
     padding-bottom: 15px;
 }
+
+.row #filters {
+    /* background-color: #ffffff;
+    border: 2px solid black; 
+    box-shadow: 10px 5px 5px #007bff;*/
+    padding: 3px;
+    font-weight: bold;
+    font-style: italic;
+    text-align: center;
+}
+
+
+
+#generateBanlist {
+    text-align: center;
+    /* padding-top: 5px; */
+    padding: 20px 0px 10px 0px;
+}
+
+.filter {
+    padding: 15px 0px 0px 0px;
+  
+}
+
+
 
 div#limitation-dropdown {
     padding-top: 8px;
@@ -22,6 +53,8 @@ div#limitation-dropdown {
     border-radius: 15px;
     width: 170px;
     text-align: center;
+    font-weight: bold;
+    font-style: italic;
 }
 
 
@@ -34,6 +67,17 @@ div#navbarSupportedContent {
 
 .bg-dark {
     --bs-bg-opacity: 0.5;
+   
+}
+
+.filter #typeFilters {
+    border: 2px solid;
+    border-radius: 10px;
+    width: 170px;
+    height: 40px;
+    text-align: center;
+    font-weight: bold;
+    font-style: italic;
    
 }
 

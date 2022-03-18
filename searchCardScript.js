@@ -11,10 +11,17 @@ function generateBanlist() {
 
     var textBanlist = String(value);
     console.log(textBanlist);
-    var blob = new Blob(["0000" + " " + textBanlist + "\n" + "0000" + " " + textBanlist],
-        { type: "text/plain;charset=utf-8" }
-    );
-    saveAs(blob, "banlist.txt");
+
+    if (value = "nill") { //The condition should also include if the card search was also there!
+        alert("Please select your card name & limitation!");
+    }
+    else {
+        var blob = new Blob(["0000" + " " + textBanlist + "\n" + "0000" + " " + textBanlist],
+            { type: "text/plain;charset=utf-8" }
+        );
+        saveAs(blob, "banlist.txt");
+    }
+
 }
 
 

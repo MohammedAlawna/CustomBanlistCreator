@@ -77,10 +77,20 @@
                         </div>
                     </div>
 
+
+                    <!-- ##Uploaded Icons For Fliters##
+                    Url: https://imgur.com/a/ciKBu4y
+                    TODO Add icon near selection!
+                    https://designwithpc.com/Plugins/ddSlick
+                    https://www.youtube.com/watch?v=9eImxcLnoek    
+                    -->
+
                     <div id="limitation-dropdown">
                         <form>
                             <select id="limitation">
-                                <option selected="selected" value="">Limit this card to..</option>
+                                <option selected=" selected" value="https://i.imgur.com/vqybGjM.png">
+                                    <div id="icon1"> Limit this card to.. </div>
+                                </option>
                                 <option value="0"> Set to Forbidden. </option>
                                 <option value="1"> Set to Limited. </option>
                                 <option value="2"> Set to Semi-Limited. </option>
@@ -89,19 +99,142 @@
                     </div>
 
 
-
                     <div id="bottomDots">
                         <img src="https://i.imgur.com/x58Y3Nr.png" alt="bottomDots">
                     </div>
 
+                    <!-- <div id="banImage">
+                        <img src="https://i.imgur.com/xIur5Vc.png" alt="banLogo">
+                    </div> -->
+
+                    <div class="filter">
+                        <div class="row">
+                            <div id="filters" class="col-4">
+                                <form>
+                                    <select id="typeFilters">
+                                        <option selected="selected" value="nill">Ban by Card Type</option>
+                                        <option value="0"> Monster. </option>
+                                        <option value="1"> Spell. </option>
+                                        <option value="2"> Trap. </option>
+                                    </select>
+                                </form>
+                            </div>
+                            <div id="filters" class="col-4">
+                                <form>
+                                    <!-- We'll put only monsters and we'll get code for depeendent dropdown soon! -->
+                                    <select id="typeFilters">
+                                        <option selected="selected" value="nill">Ban by Subtype</option>
+                                        <option value="0"> Normal. </option>
+                                        <option value="1"> Effect. </option>
+                                        <option value="2"> Fusion. </option>
+                                        <option value="2"> Ritual. </option>
+                                        <option value="2"> Synchro. </option>
+                                        <option value="2"> Xyz. </option>
+                                        <option value="2"> Pendulum. </option>
+                                        <option value="2"> Link. </option>
+                                        <option value="2"> Tuner. </option>
+                                        <option value="2"> Flip. </option>
+                                        <option value="2"> Union. </option>
+                                        <option value="2"> Toon. </option>
+                                        <option value="2"> Spirit. </option>
+                                        <option value="2"> Spirit. </option>
+                                    </select>
+                                </form>
+                            </div>
+                            <div id="filters" class="col-4">
+                                <form>
+                                    <select id="typeFilters">
+                                        <option selected="selected" value="nill">Ban by Attribute</option>
+                                        <option value="0"> Dark. </option>
+                                        <option value="1"> Earth. </option>
+                                        <option value="2"> Fire. </option>
+                                        <option value="2"> Light. </option>
+                                        <option value="2"> Water. </option>
+                                        <option value="2"> Wind. </option>
+                                        <option value="2"> Divine. </option>
+                                    </select>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div id="filters" class="col-4">
+                                <form>
+                                    <select id="typeFilters">
+                                        <option selected="selected" value="nill">Ban By Level/Rank</option>
+                                        <option value="1"> 1 </option>
+                                        <option value="2"> 2 </option>
+                                        <option value="2"> 3 </option>
+                                        <option value="2"> 4 </option>
+                                        <option value="2"> 5 </option>
+                                        <option value="2"> 6 </option>
+                                        <option value="2"> 7 </option>
+                                        <option value="2"> 8 </option>
+                                        <option value="2"> 9 </option>
+                                        <option value="2"> 10 </option>
+                                        <option value="2"> 11 </option>
+                                        <option value="2"> 12 </option>
+                                    </select>
+                                </form>
+                            </div>
+
+                            <div id="filters" class="col-4">
+                                <form>
+                                    <select id="typeFilters">
+                                        <option selected="selected" value="nill">Ban by Mon.Type</option>
+                                        <option value="0"> Spellcaster. </option>
+                                        <option value="1"> Fairy. </option>
+                                        <option value="2"> Warrior. </option>
+                                        <option value="2"> Machine. </option>
+                                        <option value="2"> Zombie. </option>
+                                        <option value="2"> Fiend. </option>
+                                        <option value="2"> Aqua. </option>
+                                        <option value="2"> Pyro. </option>
+                                        <option value="2"> Rock. </option>
+                                        <option value="2"> Winged-Beast. </option>
+                                        <option value="2"> Plant. </option>
+                                        <option value="2"> Insect. </option>
+                                        <option value="2"> Thunder. </option>
+                                        <option value="2"> Dragon. </option>
+                                        <option value="2"> Beast. </option>
+                                        <option value="2"> Beast-Warrior. </option>
+                                        <option value="2"> Dinosaur. </option>
+                                        <option value="2"> Fish. </option>
+                                        <option value="2"> Sea-Serpent. </option>
+                                        <option value="2"> Reptile. </option>
+                                        <option value="2"> Psychic. </option>
+                                        <option value="2"> Wyrm. </option>
+                                        <option value="2"> Cyberse. </option>
+                                    </select>
+                                </form>
+                            </div>
+
+                            <div id="filters" class="col-4">
+                                <form>
+                                    <select id="typeFilters">
+                                        <option selected="selected" value="nill">Ban by Location</option>
+                                        <option value="0"> Main. </option>
+                                        <option value="1"> Extra. </option>
+                                        <option value="2"> Main or Extra. </option>
+                                        <option value="2"> Main or Side. </option>
+                                        <option value="2"> Extra or Side. </option>
+                                        <option value="2"> Main or Extra or Side. </option>
+
+                                    </select>
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
+
     <div id="generateBanlist">
         <button onclick="generateBanlist()" type="button" class="btn btn-primary">Generate Banlist!</button>
     </div>
+
 
 
     <!-- Neglected Dropdown!
