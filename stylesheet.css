@@ -12,11 +12,7 @@ text-align: center;
     margin:auto;
 } */
 
-#generateBanlist {
-    text-align: center;
-    padding-top: 5px;
-    padding-bottom: 15px;
-}
+
 
 .row #filters {
     /* background-color: #ffffff;
@@ -28,13 +24,18 @@ text-align: center;
     text-align: center;
 }
 
-
-
+/*
 #generateBanlist {
     text-align: center;
-    /* padding-top: 5px; */
-    padding: 20px 0px 10px 0px;
+    padding-top: 5px;
+    padding-bottom: 15px;
 }
+ 
+ #generateBanlist {
+    text-align: center;
+    padding-top: 5px; 
+    padding: 20px 0px 10px 0px;
+} */
 
 .filter {
     padding: 15px 0px 0px 0px;
@@ -57,6 +58,42 @@ div#limitation-dropdown {
     font-style: italic;
 }
 
+.search-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25 rem;
+}
+
+input {
+    font-size: 1rem;
+}
+
+.user-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 0.25rem;
+    margin: 1rem;
+
+}
+
+.card {
+    border: 1px solid black;
+    background-color: white;
+    padding: 0.5rem;
+}
+
+.card > .header {
+    margin-bottom: 0.25rem;
+}
+
+.card > .body {
+    font-size: 0.8 rem;
+    color: #777;
+}
+
+.hide {
+    display: none;
+}
 
 
 div#navbarSupportedContent {
@@ -68,6 +105,20 @@ div#navbarSupportedContent {
 .bg-dark {
     --bs-bg-opacity: 0.5;
    
+}
+
+#buttonsRow {
+    justify-content: center;
+    display:flex;
+    padding: 20px 0px 20px 0;;
+}
+
+#generateBanlist {
+padding: 0px 20px 0 20px;
+}
+
+#exportBanlist {
+    padding: 0px 20px 0 20px;
 }
 
 .filter #typeFilters {

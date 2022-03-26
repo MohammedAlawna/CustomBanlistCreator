@@ -12,6 +12,9 @@
 
     <link rel="stylesheet" href="stylesheet.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/5.0.0/introjs.min.css">
 
 
     <title>Custom Banlist Creator</title>
@@ -19,6 +22,29 @@
 
 <body>
 
+    <!-- TODO Intro Guide System!
+    <button id="step-two" class="btn btn-primary">Proceed</button>
+    <button id="step-three" class="btn btn-danger">Final</button>
+    <p id="step-one">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi porro cum veritatis sit vero ex nisi
+        quae, ipsam temporibus. Corrupti nam quaerat quia expedita optio illum molestias laboriosam unde rem.</p> -->
+
+
+    <!-- Trial Search Bar-->
+    <h1 class="text-light">The following search bar is trial!</h1>
+    <div class="search-wrapper">
+        <label for="search">Search</label>
+        <input type="search" id="search" data-search>
+    </div>
+
+    <div class="user-cards" data-user-cards-container></div>
+    <template data-user-template>
+        <div class="card">
+            <div class="header" data-header>Card Name.</div>
+            <div class="body" data-body>Card Description / Card Image.</div>
+        </div>
+    </template>
+
+    <!--End Trial Search Bar-->
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">
@@ -65,13 +91,16 @@
         <img src="https://i.imgur.com/WroXXZA.png" alt="searchLogo">
     </div>
 
+
+
     <div id="cardSearchBar">
         <div class="container mt-5">
             <div class="row d-flex justify-content-center ">
                 <div class="col-md-6">
                     <div class="card">
-                        <div class="input-box"> <input type="text" class="form-control"
-                                placeholder="Enter the name of the card"> <i class="fa fa-search"></i>
+                        <div class="input-box"> <input onclick="getSearchResults()" name="search" id="search"
+                                type="text" class="form-control" placeholder="Enter the name of the card"> <i
+                                class="fa fa-search"></i>
                         </div>
                         <div class="list border-bottom"> <i class="fa fa-fire"></i>
                         </div>
@@ -85,15 +114,21 @@
                     https://www.youtube.com/watch?v=9eImxcLnoek    
                     -->
 
+                    <!-- ##Trial Selection With Image-->
+
+
+
                     <div id="limitation-dropdown">
                         <form>
                             <select id="limitation">
-                                <option selected=" selected" value="https://i.imgur.com/vqybGjM.png">
-                                    <div id="icon1"> Limit this card to.. </div>
-                                </option>
+                                <option selected=" selected" value="nill"> Limit this card to.. </option>
                                 <option value="0"> Set to Forbidden. </option>
                                 <option value="1"> Set to Limited. </option>
                                 <option value="2"> Set to Semi-Limited. </option>
+                                <option value="3"> Unlimited. </option>
+                                <option value="4"> Limited-1 </option>
+                                <option value="5"> Limited-2. </option>
+                                <option value="6"> Limited-3. </option>
                             </select>
                         </form>
                     </div>
@@ -231,11 +266,14 @@
     </div>
 
 
-    <div id="generateBanlist">
-        <button onclick="generateBanlist()" type="button" class="btn btn-primary">Generate Banlist!</button>
+    <div id="buttonsRow">
+        <div id="generateBanlist">
+            <button onclick="generateBanlist()" type="button" class="btn btn-primary">Generate Banlist!</button>
+        </div>
+        <div id="exportBanlist">
+            <button onclick="exportBanlist()" type="button" class="btn btn-primary">Export Banlist</button>
+        </div>
     </div>
-
-
 
     <!-- Neglected Dropdown!
     <div class="dropdown">
@@ -265,6 +303,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="searchCardScript.js"></script>
     <script src="FileSaver.js"></script>
+    <script src="https://cdn.rawgit.com/prashantchaudhary/ddslick/master/jquery.ddslick.min.js"></script>
+
 </body>
 
 </html>
