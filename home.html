@@ -33,14 +33,15 @@
     <h1 class="text-light">The following search bar is trial!</h1>
     <div class="search-wrapper">
         <label for="search">Search</label>
-        <input type="search" id="search" data-search>
+        <input type="search" id="search-field" data-search>
     </div>
 
-    <div class="user-cards" data-user-cards-container></div>
+    <div class="user-cards scroll" data-user-cards-container></div>
     <template data-user-template>
-        <div class="card">
+        <div id="carddiv" onclick="getID('carddiv')" class="card">
             <div class="header" data-header>Card Name.</div>
             <div class="body" data-body>Card Description / Card Image.</div>
+            <div class="no" id="numb" data-no>Card Description / Card Image.</div>
         </div>
     </template>
 

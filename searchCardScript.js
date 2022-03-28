@@ -7,27 +7,51 @@ const userCardTemplate = document.querySelector("[data-user-template]");
 const userCardContainer = document.querySelector("[data-user-cards-container]");
 const searchInput = document.querySelector("[data-search]");
 let users = [];
+let e;
+let value = "";
+var id = 0;
+let nou = "";
+let no = "";
 
 //Event Listener for searching (onTyping)
 
+
+
+
 searchInput.addEventListener("input", (e) => {
-    const value = e.target.value.toLowerCase();
+
+    value = e.target.value.toLowerCase();
+
     users.forEach(user => {
+
+
         const isVisible = user.name.toLowerCase().includes(value) || user.type.toLowerCase().includes(value);
 
+
         user.element.classList.toggle("hide", !isVisible);
+
+
     })
     console.log(users);
 })
 
 
 
+
+
+
+// function Hey() {
+
+
+// }
 //Re-Write the code!
 //const myCards = document.querySelector();
 
 //const myCards = document.querySelector("#main");
 const _myRequest = new Request('https://db.ygoprodeck.com/api/v7/cardinfo.php');
 // let _cards = [];
+
+
 
 fetch(_myRequest).then(response => response.json()).then(({ data }) => {
 
@@ -45,20 +69,55 @@ fetch(_myRequest).then(response => response.json()).then(({ data }) => {
     // return { name: _card.name, type: user.type, element: card }
     //}
 
+
+
+
     users = data.map(user => {
+
+
         const card = userCardTemplate.content.cloneNode(true).children[0]
         const header = card.querySelector("[data-header]")
         const body = card.querySelector("[data-body]")
+        let no = card.querySelector("[data-no]");
+        let searchField = document.getElementById('search-field').value;
 
+
+
+
+
+        ///  nou = no;
+        no.textContent = user.id;
         header.textContent = user.name;
         body.textContent = user.type;
         userCardContainer.append(card)
+        // console.log(user.id);
+        no.addEventListener('click', function (event) {
+            event.preventDefault();
+            // console.log(no.textContent);
+            let idConverted = no.textContent.toString();
+            //console.log(idConverted);
+            //searchField = "ff";
+            let searchField = document.getElementById('search-field').value = idConverted;
+            //searchField = idConverted;
+        });
+        //console.log(no.textContent);
+
 
         return { name: user.name, type: user.type, element: card }
+
     })
+
+
+
+
 })
 
 
+function getID(id) {
+    let el = document.getElementById(id);
+
+
+}
 
 
 // const _myRequest = new Request('https://jsonplaceholder.typicode.com/users');
