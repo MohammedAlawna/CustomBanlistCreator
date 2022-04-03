@@ -1,0 +1,12 @@
+body {
+    background-image: url('https://i.imgur.com/cYCloJ8.jpg');
+    background-size: cover;
+    }
+
+#btns-grp {
+    padding: 15px;
+    justify-content: center;
+    text-align: center;
+}
+
+

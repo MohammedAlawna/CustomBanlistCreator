@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
     <title>Sandbox</title>
 
 
@@ -12,30 +15,118 @@
 </head>
 
 <body>
-    <h1>This is a trial code for the JSON api.</h1>
+    <div class="container w-50">
+        <div class="row align-items-start">
+            <div class="col">
+                <form>
+                    <select id="typeFilters">
+                        <option selected="selected" value="nill">Ban by Card Type</option>
+                        <option value="0"> Monster. </option>
+                        <option value="1"> Spell. </option>
+                        <option value="2"> Trap. </option>
+                    </select>
+                </form>
+            </div>
+            <div class="col">
+                <form>
+                    <select id="typeFilters">
+                        <option selected="selected" value="nill">Ban by Card Type</option>
+                        <option value="0"> Monster. </option>
+                        <option value="1"> Spell. </option>
+                        <option value="2"> Trap. </option>
+                    </select>
+                </form>
+            </div>
+            <div class="col">
+                <form>
+                    <select id="typeFilters">
+                        <option selected="selected" value="nill">Ban by Card Type</option>
+                        <option value="0"> Monster. </option>
+                        <option value="1"> Spell. </option>
+                        <option value="2"> Trap. </option>
+                    </select>
+                </form>
+            </div>
+        </div>
+        <div class="row align-items-center">
+            <div class="col">
+                <form>
+                    <select id="typeFilters">
+                        <option selected="selected" value="nill">Ban by Card Type</option>
+                        <option value="0"> Monster. </option>
+                        <option value="1"> Spell. </option>
+                        <option value="2"> Trap. </option>
+                    </select>
+                </form>
+            </div>
+            <div class="col">
+                <form>
+                    <select id="typeFilters">
+                        <option selected="selected" value="nill">Ban by Card Type</option>
+                        <option value="0"> Monster. </option>
+                        <option value="1"> Spell. </option>
+                        <option value="2"> Trap. </option>
+                    </select>
+                </form>
+            </div>
+            <div class="col">
+                <form>
+                    <select id="typeFilters">
+                        <option selected="selected" value="nill">Ban by Card Type</option>
+                        <option value="0"> Monster. </option>
+                        <option value="1"> Spell. </option>
+                        <option value="2"> Trap. </option>
+                    </select>
+                </form>
+            </div>
+        </div>
+        <div class="row align-items-end">
+            <div class="col">
+                <form>
+                    <select id="typeFilters">
+                        <option selected="selected" value="nill">Ban by Card Type</option>
+                        <option value="0"> Monster. </option>
+                        <option value="1"> Spell. </option>
+                        <option value="2"> Trap. </option>
+                    </select>
+                </form>
+            </div>
+            <div class="col">
+                <form>
+                    <select id="typeFilters">
+                        <option selected="selected" value="nill">Ban by Card Type</option>
+                        <option value="0"> Monster. </option>
+                        <option value="1"> Spell. </option>
+                        <option value="2"> Trap. </option>
+                    </select>
+                </form>
+            </div>
+            <div class="col">
+                <form>
+                    <select id="typeFilters">
+                        <option selected="selected" value="nill">Ban by Card Type</option>
+                        <option value="0"> Monster. </option>
+                        <option value="1"> Spell. </option>
+                        <option value="2"> Trap. </option>
+                    </select>
+                </form>
+            </div>
+        </div>
+    </div>
 
-    <div id="main"></div>
 
 
-
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
 
     <script>
-
-        const myCards = document.querySelector("#main");
-        const _myRequest = new Request('https://db.ygoprodeck.com/api/v7/cardinfo.php');
-        // let _cards = [];
-
-        fetch(_myRequest).then(response => response.json()).then(({ data }) => {
-            for (const _card of data) {
-                console.log(_card.id);
-
-                let cardItem = document.createElement('li');
-                cardItem.appendChild(document.createElement('strong')).textContent = _card.type;
-                myCards.appendChild(cardItem);
-
-            }
-        })
-
     </script>
 </body>
 

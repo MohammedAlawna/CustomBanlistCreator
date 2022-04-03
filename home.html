@@ -22,30 +22,7 @@
 
 <body>
 
-    <!-- TODO Intro Guide System!
-    <button id="step-two" class="btn btn-primary">Proceed</button>
-    <button id="step-three" class="btn btn-danger">Final</button>
-    <p id="step-one">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi porro cum veritatis sit vero ex nisi
-        quae, ipsam temporibus. Corrupti nam quaerat quia expedita optio illum molestias laboriosam unde rem.</p> -->
 
-
-    <!-- Trial Search Bar-->
-    <h1 class="text-light">The following search bar is trial!</h1>
-    <!-- <div class="search-wrapper">
-        <label for="search">Search</label>
-        <input type="search" id="search-field" data-search>
-    </div>
-
-    <div class="user-cards scroll" data-user-cards-container></div>
-    <template data-user-template>
-        <div id="carddiv" onclick="getID('carddiv')" class="card">
-            <div class="header" data-header>Card Name.</div>
-            <div class="body" data-body>Card Description / Card Image.</div>
-            <div class="no" id="numb" data-no>Card Description / Card Image.</div>
-        </div>
-    </template> -->
-
-    <!--End Trial Search Bar-->
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a class="navbar-brand" href="#">
@@ -77,8 +54,7 @@
             </ul>
         </div>
         <div class="socialLinksContainer">
-            <a class="navbar-brand" href="https://www.twitch.tv/duelists_unite">
-                <img src="https://brand.twitch.tv/assets/images/black.png" width="50" height="30" alt=""></a>
+
             <a class="navbar-brand" href="https://discord.gg/duelistsunite">
                 <img src="https://i.dlpng.com/static/png/6838231_preview.png" width="50" height="30" alt=""></a>
         </div>
@@ -108,6 +84,14 @@
         </div>
     </div>
 
+    <!-- Whitelist means all not included excpet for the following cards:-->
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="whiteListCheckBox">
+        <label class="form-check-label" for="flexCheckDefault">
+            Mark as whitelist
+        </label>
+    </div>
+
     <div id="div-cards">
         <div class="row d-flex justify-content-center">
             <div class="user-cards scroll" data-user-cards-container></div>
@@ -120,30 +104,6 @@
             </template>
         </div>
     </div>
-
-    <!-- <div id="cardSearchBar">
-        <div class="container mt-5">
-            <div class="row d-flex justify-content-center ">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="input-box"> <input onclick="getSearchResults()" name="search" id="search"
-                                type="text" class="form-control" placeholder="Enter the name of the card"> <i
-                                class="fa fa-search"></i>
-                        </div>
-                        <div class="list border-bottom"> <i class="fa fa-fire"></i>
-                        </div>
-                    </div> -->
-
-
-    <!-- ##Uploaded Icons For Fliters##
-                    Url: https://imgur.com/a/ciKBu4y
-                    TODO Add icon near selection!
-                    https://designwithpc.com/Plugins/ddSlick
-                    https://www.youtube.com/watch?v=9eImxcLnoek    
-                    -->
-
-    <!-- ##Trial Selection With Image-->
-
 
 
     <div id="limitation-dropdown">
@@ -166,9 +126,6 @@
         <img src="https://i.imgur.com/x58Y3Nr.png" alt="bottomDots">
     </div>
 
-    <!-- <div id="banImage">
-                        <img src="https://i.imgur.com/xIur5Vc.png" alt="banLogo">
-                    </div> -->
 
     <div class="filter">
         <div class="row">
@@ -176,9 +133,9 @@
                 <form>
                     <select id="typeFilters">
                         <option selected="selected" value="nill">Ban by Card Type</option>
-                        <option value="0"> Monster. </option>
-                        <option value="1"> Spell. </option>
-                        <option value="2"> Trap. </option>
+                        <option value="Monster"> Monster. </option>
+                        <option value="Spell"> Spell. </option>
+                        <option value="Trap"> Trap. </option>
                     </select>
                 </form>
             </div>
@@ -301,6 +258,10 @@
         <div id="exportBanlist">
             <button onclick="exportBanlist()" type="button" class="btn btn-primary">Export Banlist</button>
         </div>
+    </div>
+    <div id="exportBanlist">
+        <button onclick="nestedBlobTrial()" type="button" class="btn btn-primary">Nested Blob</button>
+    </div>
     </div>
 
     <!-- Neglected Dropdown!
