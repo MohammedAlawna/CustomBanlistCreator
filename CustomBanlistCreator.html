@@ -36,8 +36,40 @@
     </div>
 
     <!--Trial Animation Code-->
-    <div id="animate" style="display:none">
-        <p style="background-color:black; color:white">I'm a text that should animate!!</p>
+    <div id="banListPreview" style="display: none;">
+        <div id="listPreview">
+            <div class="row">
+                <div class="col-md-4 col-sm-4">
+
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    <button type="button" onclick="addItem()" class="btn btn-primary addItemBtn">Add Item</button>
+                    <button type="button" onclick="removeItem()" class="btn btn-danger removeItemBtn">Remove
+                        Item</button>
+                    <button type="button" onclick="clearItems()" class="btn btn-warning clearItemsBtn">Clear
+                        Items</button>
+                    <button type="button" onclick="randomizeItems()" class="btn btn-secondary randomItemsBtn">Random
+                        Items</button>
+                </div>
+                <div class="col-md-2"> </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 col-sm-4">
+
+                </div>
+                <div class="col-md-6 col-sm-9">
+                    <div class="flex-box">
+
+                        <textarea id="listArea" readonly="readonly" class="input shadow" name="name" rows="20"
+                            cols="130" placeholder="Your text here ">                    </textarea>
+
+                    </div>
+                </div>
+                <div class="col-md-3">
+                </div>
+            </div>
+        </div>
     </div>
 
 

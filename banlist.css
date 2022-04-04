@@ -9,4 +9,18 @@ body {
     text-align: center;
 }
 
+#banListPreview {
+    justify-content: center;
+}
 
+.flex-box {
+    display: flex;
+    justify-content: center;
+}
+
+textarea {
+    background-color: #0d5375;
+    overflow: auto;
+    resize: vertical;
+    color: white;
+}
