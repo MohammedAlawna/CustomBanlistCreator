@@ -18,6 +18,16 @@ body {
     justify-content: center;
 }
 
+#limitation-selection {
+    color: white;
+    padding: 5px;
+}
+
+#whiteListBox{
+color: white;
+padding: 5px;
+}
+
 textarea {
     background-color: #0d5375;
     overflow: auto;

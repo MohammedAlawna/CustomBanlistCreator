@@ -48,8 +48,32 @@
                         Item</button>
                     <button type="button" onclick="clearItems()" class="btn btn-warning clearItemsBtn">Clear
                         Items</button>
-                    <button type="button" onclick="randomizeItems()" class="btn btn-secondary randomItemsBtn">Random
+                    <button type="button" onclick="randomItems()" class="btn btn-secondary randomItemsBtn">Random
                         Items</button>
+
+                    <div id="whiteListBox" style="display:none;">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="whiteListCheckBox">
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Mark as whitelist
+                            </label>
+                        </div>
+                        <button type="button" id="next" onclick="Next()" class="btn btn-dark">Next</button>
+                    </div>
+
+                    <div id="limitation-selection" style="display: none;">
+                        <form>
+                            <select id="limitation">
+                                <option selected=" selected" value="nill"> Select limitation.. </option>
+                                <option value="limitation"> Limitation. </option>
+                                <option value="requirement"> Requirement. </option>
+                            </select>
+
+                        </form>
+
+                    </div>
+
+
                 </div>
                 <div class="col-md-2"> </div>
             </div>
