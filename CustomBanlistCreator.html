@@ -58,20 +58,24 @@
                                 Mark as whitelist
                             </label>
                         </div>
-                        <button type="button" id="next" onclick="Next()" class="btn btn-dark">Next</button>
+                        <div id="limitation-selection" style="display: none;">
+                            <form>
+                                <select id="limitation">
+                                    <option selected=" selected" value="nill"> Select limitation.. </option>
+                                    <option value="limitation"> Limitation. </option>
+                                    <option value="requirement"> Requirement. </option>
+                                </select>
+
+                            </form>
+
+                        </div>
+                        <!--onclick="Next()"-->
+                        <div class="row">
+                            <button type="button" id="next" class="btn btn-dark">Next</button>
+                        </div>
                     </div>
 
-                    <div id="limitation-selection" style="display: none;">
-                        <form>
-                            <select id="limitation">
-                                <option selected=" selected" value="nill"> Select limitation.. </option>
-                                <option value="limitation"> Limitation. </option>
-                                <option value="requirement"> Requirement. </option>
-                            </select>
 
-                        </form>
-
-                    </div>
 
 
                 </div>
