@@ -141,8 +141,13 @@ function addItem() {
             let valueLocation = selectCardLocation.options[selectCardLocation.selectedIndex].value;
             let valueLimitation = selectCardLimitation.options[selectCardLimitation.selectedIndex].value;
             let valueGroup = selectCardGroup.options[selectCardGroup.selectedIndex].value;
-            console.log(valueLocation + valueLimitation + valueGroup + whiteListCheck);
+            console.log(valueLocation + "\n" + valueLimitation + "\n" + valueGroup + '\n' + whiteListCheck);
 
+
+            for (let i = 0; i < itemQuestions.length; i++) {
+                itemQuestions[i].style.display = "none";
+
+            }
 
 
         });
@@ -157,10 +162,6 @@ function addItem() {
 
 
             //Hide all elements
-            for (let i = 0; i < itemQuestions.length; i++) {
-                itemQuestions[i].style.display = "none";
-
-            }
 
             count = 0;
 
