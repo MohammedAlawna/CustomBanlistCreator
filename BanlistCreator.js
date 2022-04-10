@@ -15,24 +15,38 @@ function ImportBanlist() {
 function addItem() {
 
     //boolean variables to create the text file
-    let whiteListCheck;
+
     let requirment;
     let individual;
     //Other variables should be defined later now we'll try on the small scope to make banlist!
 
     let nextBtn = document.getElementById('next');
+    let itemaddedBtn = document.getElementById('itemAddedBtn');
     //This should enable the qustions (You may show them as divs aswell)
     //@1 Show first question: Whitelist or not!
     let itemQuestions = [];
+
     itemQuestions[0] = document.getElementById('whiteListBox');
     itemQuestions[1] = document.getElementById('limitation-selection');
-    //itemQuestions[2] = document.getElementById();
+    itemQuestions[2] = document.getElementById('ind-selection');
+    itemQuestions[3] = document.getElementById('location-selection');
+
+    //Selection values
+    let whiteListCheck;
+    let selectCardLocation = document.getElementById('card-location');
+    let selectCardGroup = document.getElementById('card-group');
+    var selectCardLimitation = document.getElementById("limitation");
+
+
+
+    //var value = select.options[select.selectedIndex].value;
 
     count = 0;
 
     if (count == 0) {
 
         itemQuestions[0].style.display = "block";
+        nextBtn.disabled = false;
 
     }
 
@@ -53,8 +67,6 @@ function addItem() {
 
             itemQuestions[1].style.display = "block";
 
-
-
         }
 
         if (count == 2) {
@@ -62,21 +74,97 @@ function addItem() {
             var select = document.getElementById("limitation");
             var value = select.options[select.selectedIndex].value;
 
-
             if (value == "requirement") {
                 alert("You choose a requirment.");
+                //TODO Add + to the textblob.
             }
             else if (value == "limitation") {
-                alert("You choose limitation.")
+                alert("You choose limitation.");
+                //TODO don't add + to the text blob.
             }
-            else {
+            itemQuestions[2].style.display = 'block';
 
-            }
         }
 
+        if (count == 3) {
+            var select = document.getElementById('card-group');
+            var value = select.options[select.selectedIndex].value;
+            if (value == "individ") {
+                alert("You choose Individual!");
+                //TODO Show card Search! (Dropdown search IMP)
+            }
+            else if (value == "group") {
+                alert("You choose group!");
+                //TODO Show ban grouping categories.
+            }
+
+            itemQuestions[3].style.display = "block"; //it should be the location!
+        }
+
+        if (count == 4) {
+            //Show location question.
+            var select = document.getElementById('card-location');
 
 
 
+            var value = select.options[select.selectedIndex].value;
+            if (value == "main") {
+                alert('main');
+            }
+            else if (value == "extra") {
+                alert('Extra');
+            }
+            else if (value == "me") {
+                alert('main or extra');
+            }
+            else if (value == "ms") {
+                alert('main or side');
+            }
+            else if (value == "es") {
+                alert('extra or side');
+            }
+            else if (value == "mes") {
+                alert('main or extra or side');
+            }
+            else if (value == "nill") {
+                alert('this field is optional!'); //Do not add anything as it's optional~!
+            }
+
+
+            itemaddedBtn.disabled = false;
+            nextBtn.disabled = true;
+        }
+
+        itemaddedBtn.addEventListener("click", () => {
+            //Check WhiteList
+            whiteListCheck = document.querySelector('.form-check-input').checked;
+            let valueLocation = selectCardLocation.options[selectCardLocation.selectedIndex].value;
+            let valueLimitation = selectCardLimitation.options[selectCardLimitation.selectedIndex].value;
+            let valueGroup = selectCardGroup.options[selectCardGroup.selectedIndex].value;
+            console.log(valueLocation + valueLimitation + valueGroup + whiteListCheck);
+
+
+
+        });
+
+        if (count == 5) {
+            /* 
+            1. Add the item to text/list.
+            2. Hide questions that was shown
+            3. Reset their values and the loop should be able to start again! (count ==0)
+            */
+
+
+
+            //Hide all elements
+            for (let i = 0; i < itemQuestions.length; i++) {
+                itemQuestions[i].style.display = "none";
+
+            }
+
+            count = 0;
+
+        }
 
 
 

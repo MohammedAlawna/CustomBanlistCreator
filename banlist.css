@@ -1,7 +1,7 @@
 body {
     background-image: url('https://i.imgur.com/cYCloJ8.jpg');
     background-size: cover;
-    }
+}
 
 #btns-grp {
     padding: 15px;
@@ -23,9 +23,23 @@ body {
     padding: 5px;
 }
 
-#whiteListBox{
-color: white;
-padding: 5px;
+#ind-selection {
+    color: white;
+    padding: 5px;
+}
+
+#itemAddedBtn {
+    padding: 5px;
+}
+
+#location-selection {
+    color: white;
+    padding: 5px;
+}
+
+#whiteListBox {
+    color: white;
+    padding: 5px;
 }
 
 textarea {

@@ -61,7 +61,6 @@
                         <div id="limitation-selection" style="display: none;">
                             <form>
                                 <select id="limitation">
-                                    <option selected=" selected" value="nill"> Select limitation.. </option>
                                     <option value="limitation"> Limitation. </option>
                                     <option value="requirement"> Requirement. </option>
                                 </select>
@@ -69,9 +68,37 @@
                             </form>
 
                         </div>
+                        <div id="ind-selection" style="display: none;">
+                            <form>
+                                <select id="card-group">
+                                    <option value="individ"> Individual. </option>
+                                    <option value="group"> Group. </option>
+                                </select>
+
+                            </form>
+
+                        </div>
+
+
+                        <div id="location-selection" style="display: none;">
+                            <form>
+                                <select id="card-location">
+                                    <option value="nill" selected>Choose your location (optional)</option>
+                                    <option value="main"> Main. </option>
+                                    <option value="extra"> Extra. </option>
+                                    <option value="me"> Main or Extra. </option>
+                                    <option value="ms"> Main or Side. </option>
+                                    <option value="es"> Extra or Side. </option>
+                                    <option value="mes"> Main or Extra or Side. </option>
+
+                                </select>
+                            </form>
+                        </div>
+
                         <!--onclick="Next()"-->
                         <div class="row">
                             <button type="button" id="next" class="btn btn-dark">Next</button>
+                            <button type="button" id="itemAddedBtn" class="btn btn-primary" disabled>Add</button>
                         </div>
                     </div>
 
