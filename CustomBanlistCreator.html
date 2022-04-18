@@ -1,144 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="banlist.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="banlist.css" />
     <title>Banlist Creator</title>
-</head>
+  </head>
 
-<body>
-
-
+  <body>
     <!--Main Logo & Toolbar
     <div></div>
     -->
 
     <!--Buttons Horizontal Row-->
     <div id="btns-grp">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm">
-                    <!-- onclick="createBanlistView()" -->
-                    <button type="button" onclick="CreateNewBanlist()" class="btn btn-primary">Create New
-                        Banlist</button>
-                </div>
-                <div class="col-sm">
-                    <!--onclick="importBanlist()"-->
-                    <button type="button" onclick="ImportBanlist()" class="btn btn-primary">Import Banlist</button>
-                </div>
-            </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm">
+            <!-- onclick="createBanlistView()" -->
+            <button
+              type="button"
+              onclick="CreateNewBanlist()"
+              class="btn btn-primary"
+            >
+              Create New Banlist
+            </button>
+          </div>
+          <div class="col-sm">
+            <!--onclick="importBanlist()"-->
+            <button
+              type="button"
+              onclick="ImportBanlist()"
+              class="btn btn-primary"
+            >
+              Import Banlist
+            </button>
+          </div>
         </div>
+      </div>
     </div>
 
     <!--Trial Animation Code-->
-    <div id="banListPreview" style="display: none;">
-        <div id="listPreview">
-            <div class="row">
-                <div class="col-md-4 col-sm-4">
+    <div id="banListPreview" style="display: none">
+      <div id="listPreview">
+        <div class="row">
+          <div class="col-md-4 col-sm-4"></div>
+          <div class="col-md-6 col-sm-6">
+            <button
+              type="button"
+              onclick="addItem()"
+              class="btn btn-primary addItemBtn"
+            >
+              Add Item
+            </button>
+            <button
+              type="button"
+              onclick="removeItem()"
+              class="btn btn-danger removeItemBtn"
+            >
+              Remove Item
+            </button>
+            <button
+              type="button"
+              onclick="clearItems()"
+              class="btn btn-warning clearItemsBtn"
+            >
+              Clear Items
+            </button>
+            <button
+              type="button"
+              onclick="randomItems()"
+              class="btn btn-secondary randomItemsBtn"
+            >
+              Random Items
+            </button>
 
+            <div id="whiteListBox" style="display: none">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="whiteListCheckBox"
+                />
+                <label class="form-check-label" for="flexCheckDefault">
+                  Mark as whitelist
+                </label>
+              </div>
+
+              <div id="banlistName" style="display: none">
+                <input type="text" placeholder="Enter banlist name.." />
+              </div>
+
+              <div id="limitation-selection" style="display: none">
+                <form>
+                  <select id="limitation">
+                    <option value="limitation">Limitation.</option>
+                    <option value="requirement">Requirement.</option>
+                  </select>
+                </form>
+
+                <div id="deckSizeBox" style="display: none">
+                  <div class="form-check">
+                    <input type="checkbox" class="size-check-input" value="" />
+                    <label for="flexCheckDefault" class="form-check-label"
+                      >Deck Size</label
+                    >
+                  </div>
                 </div>
-                <div class="col-md-6 col-sm-6">
-                    <button type="button" onclick="addItem()" class="btn btn-primary addItemBtn">Add Item</button>
-                    <button type="button" onclick="removeItem()" class="btn btn-danger removeItemBtn">Remove
-                        Item</button>
-                    <button type="button" onclick="clearItems()" class="btn btn-warning clearItemsBtn">Clear
-                        Items</button>
-                    <button type="button" onclick="randomItems()" class="btn btn-secondary randomItemsBtn">Random
-                        Items</button>
 
-                    <div id="whiteListBox" style="display:none;">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="" id="whiteListCheckBox">
-                            <label class="form-check-label" for="flexCheckDefault">
-                                Mark as whitelist
-                            </label>
-                        </div>
-                        <div id="limitation-selection" style="display: none;">
-                            <form>
-                                <select id="limitation">
-                                    <option value="limitation"> Limitation. </option>
-                                    <option value="requirement"> Requirement. </option>
-                                </select>
-
-                            </form>
-
-                        </div>
-                        <div id="ind-selection" style="display: none;">
-                            <form>
-                                <select id="card-group">
-                                    <option value="individ"> Individual. </option>
-                                    <option value="group"> Group. </option>
-                                </select>
-
-                            </form>
-
-                        </div>
-
-
-                        <div id="location-selection" style="display: none;">
-                            <form>
-                                <select id="card-location">
-                                    <option value="nill" selected>Choose your location (optional)</option>
-                                    <option value="main"> Main. </option>
-                                    <option value="extra"> Extra. </option>
-                                    <option value="me"> Main or Extra. </option>
-                                    <option value="ms"> Main or Side. </option>
-                                    <option value="es"> Extra or Side. </option>
-                                    <option value="mes"> Main or Extra or Side. </option>
-
-                                </select>
-                            </form>
-                        </div>
-
-                        <!--onclick="Next()"-->
-                        <div class="row">
-                            <button type="button" id="next" class="btn btn-dark">Next</button>
-                            <button type="button" id="itemAddedBtn" class="btn btn-primary" disabled>Add</button>
-                        </div>
-                    </div>
-
-
-
-
+                <div id="noDeckSize" style="display: none">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="quantity"
+                    value="0"
+                    name="quantity"
+                    min="1"
+                    max="40"
+                  />
                 </div>
-                <div class="col-md-2"> </div>
+              </div>
+
+              <div id="ind-selection" style="display: none">
+                <form>
+                  <select id="card-group">
+                    <option value="individ">Individual.</option>
+                    <option value="group">Group.</option>
+                  </select>
+                </form>
+              </div>
+
+              <div id="location-selection" style="display: none">
+                <form>
+                  <select id="card-location">
+                    <option value="nill" selected>
+                      Choose your location (optional)
+                    </option>
+                    <option value="main">Main.</option>
+                    <option value="extra">Extra.</option>
+                    <option value="me">Main or Extra.</option>
+                    <option value="ms">Main or Side.</option>
+                    <option value="es">Extra or Side.</option>
+                    <option value="mes">Main or Extra or Side.</option>
+                  </select>
+                </form>
+              </div>
+
+              <!--onclick="Next()"-->
+              <div class="row">
+                <button type="button" id="next" class="btn btn-dark">
+                  Next
+                </button>
+                <button
+                  type="button"
+                  onclick="applyItem()"
+                  id="itemAddedBtn"
+                  class="btn btn-primary"
+                  disabled
+                >
+                  Add
+                </button>
+              </div>
             </div>
-
-            <div class="row">
-                <div class="col-md-4 col-sm-4">
-
-                </div>
-                <div class="col-md-6 col-sm-9">
-                    <div class="flex-box">
-
-                        <textarea id="listArea" readonly="readonly" class="input shadow" name="name" rows="20"
-                            cols="130" placeholder="Your text here ">                    </textarea>
-
-                    </div>
-                </div>
-                <div class="col-md-3">
-                </div>
-            </div>
+          </div>
+          <div class="col-md-2"></div>
         </div>
-    </div>
 
+        <div class="row">
+          <div class="col-md-4 col-sm-4"></div>
+          <div class="col-md-6 col-sm-9">
+            <div class="flex-box">
+              <textarea
+                id="listArea"
+                readonly="readonly"
+                class="input shadow"
+                name="name"
+                rows="20"
+                cols="130"
+                placeholder="Banlist Will Appear Here~"
+              ></textarea>
+            </div>
+          </div>
+          <div class="col-md-3"></div>
+        </div>
+      </div>
+    </div>
 
     <!--@Scripts@-->
     <script src="BanlistCreator.js"></script>
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
-</body>
-
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>

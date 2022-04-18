@@ -79,10 +79,27 @@
                         <input class="form-control" type="search" id="search-field"
                             placeholder="Please Enter Card Name.." data-search>
                     </div>
+                    
                 </div>
             </div>
         </div>
     </div>
+
+
+
+     <div id="div-cards">
+        <div class="row d-flex justify-content-center">
+            <div class="user-cards scroll" data-user-cards-container></div>
+            <template data-user-template>
+                <div id="carddiv" class="card contentCards">
+                    <div class="header" data-header>Card Name.</div>
+                    <div class="body" data-body>Card Description / Card Image.</div>
+                    <div class="no" id="numb" data-no>Card Description / Card Image.</div>
+                </div>
+            </template>
+        </div>
+    </div> 
+
 
     <!-- Whitelist means all not included excpet for the following cards:-->
     <div class="form-check">
@@ -92,19 +109,7 @@
         </label>
     </div>
 
-    <div id="div-cards">
-        <div class="row d-flex justify-content-center">
-            <div class="user-cards scroll" data-user-cards-container></div>
-            <template data-user-template>
-                <div id="carddiv" class="card">
-                    <div class="header" data-header>Card Name.</div>
-                    <div class="body" data-body>Card Description / Card Image.</div>
-                    <div class="no" id="numb" data-no>Card Description / Card Image.</div>
-                </div>
-            </template>
-        </div>
-    </div>
-
+  
 
     <div id="limitation-dropdown">
         <form>
@@ -284,13 +289,18 @@
                         <input class="form-control" type="search" id="search-field"
                             placeholder="Please Enter Card Name.." data-search>
                     </div>
+                    <!--TrialCodeOnly-->
+                  
+                            </template>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
 
-    <div id="div-cards">
+     <div id="div-cards">
         <div class="row d-flex justify-content-center">
             <div class="user-cards scroll" data-user-cards-container></div>
             <template data-user-template>
@@ -301,8 +311,29 @@
                 </div>
             </template>
         </div>
-    </div>
+    </div> 
 
+    <!--@STARTER CODE FOR IMAGE ASIDE CARD!
+    CSS::
+    #cardImage {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+}
+
+HTML Template
+<div id="carddiv" class="card">
+                    <div class="header" data-header="">Blue-Eyes Abyss Dragon</div>
+                    <div class="body" data-body="">Effect Monster</div>
+                    <div class="no" id="numb" data-no="">64202399</div>
+<img id="cardImage" src="https://static.wikia.nocookie.net/yugioh/images/8/86/BlueEyesWhiteDragon-TF04-JP-VG.jpg/revision/latest/scale-to-width-down/250?cb=20120501212944" width="100px" height="100px"> 
+                </div>
+
+                TODO:: You need to make the APi code add images with the name and desc, when you click
+                you get the card added to the search bar (name but with its id value!!)
+                That search bar must look like a search bar!!
+    
+    -->
 
 
 
