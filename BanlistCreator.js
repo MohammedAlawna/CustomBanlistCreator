@@ -1,13 +1,22 @@
 let count;
+//@@BanlistText
+let banlistText;
 //let selectCardLocation = document.getElementById("card-location");
 //let selectCardGroup = document.getElementById("card-group");
 var selectCardLimitation = document.getElementById("limitation");
 let textArea = document.getElementById("listArea");
 let itemQuestions = [];
 let whiteListCheck;
+const searchInput = document.querySelector("[data-search]");
+let searchField = document.getElementById("search-field");
+let _cardView = document.getElementById("div-cards");
+let wholeCard = document.getElementById("carddiv");
+const userCardTemplate = document.querySelector("[data-user-template]");
+const userCardContainer = document.querySelector("[data-user-cards-container]");
 //let whiteListCheck = document.querySelector(".form-check-input").checked;
 var selectDeckLimit;
 var selectLimitation;
+
 var valueLimitation;
 var selectCardGroup, valueCardGroup;
 var selectCardLocation, valueCardLocation;
@@ -21,6 +30,17 @@ function CreateNewBanlist() {
 //ًWorkflow: Click 'ImportBanlist' You'll import an already list with their data appearing on the banist view.
 function ImportBanlist() {
   console.log("Success! You imported a banlist.");
+}
+
+checkSearch();
+function checkSearch() {
+  if (searchField && searchField.value) {
+    _cardView.style.display = "block";
+    // console.log('It has a value!');
+  } else {
+    //console.log('no value there!');
+    _cardView.style.display = "none";
+  }
 }
 
 //AddItemBtn: When you click it a questionaire will appear
@@ -46,6 +66,11 @@ function addItem() {
   itemQuestions[4] = document.getElementById("deckSizeBox");
   itemQuestions[5] = document.getElementById("noDeckSize");
   itemQuestions[6] = document.getElementById("banlistName");
+  itemQuestions[7] = document.getElementById("ctype-selection");
+  itemQuestions[8] = document.getElementById("mArch-selection");
+  itemQuestions[9] = document.getElementById("mType-selection");
+  itemQuestions[10] = document.getElementById("attr-selection");
+  itemQuestions[11] = document.getElementById("cat-selection");
 
   //Selection values
   //let whiteListCheck;
@@ -72,15 +97,20 @@ function addItem() {
     if (count == 1) {
       // Process First Question (Whitelist)
       whiteListCheck = document.querySelector(".form-check-input").checked;
+      var banlistName = document.getElementById("nameBL").value;
+      //console.log("The name is: " + banlistName);
       // whiteListCheck = document.getElementById("whiteListCheckBox");
+      banlistText = "!" + banlistName + "\n";
+
       if (whiteListCheck) {
-        alert("Its a whitelist!");
-        //Add Whitelist to text blob.
+        banlistText += "$whitelist" + "\n";
+        //alert("Its a whitelist!");
       } else if (!whiteListCheck) {
         alert("It's not whitelist");
         //@IGNORE don't add whitelist to text blob.
       }
 
+      console.log(banlistText);
       itemQuestions[1].style.display = "block"; //limitation
       itemQuestions[4].style.display = "block"; //decksize box..
     }
@@ -94,10 +124,10 @@ function addItem() {
         selectLimitation.options[selectLimitation.selectedIndex].value;
 
       if (valueLimitation == "requirement") {
-        alert("You choose a requirment.");
-        //TODO Add + to the textblob.
+        banlistText += "+";
+        // alert("You choose a requirment.");
       } else if (valueLimitation == "limitation") {
-        alert("You choose limitation.");
+        alert("You choose limitation, no plus sign only id and limit.");
         //TODO don't add + to the text blob.
       }
       selectDeckLimit = document.querySelector(".size-check-input").checked;
@@ -111,6 +141,7 @@ function addItem() {
         //IF TeckBox.. then show card group.. etc.. if not show location directly.. (jump to count 4)
         itemQuestions[2].style.display = "block";
       }
+      console.log(banlistText);
     }
 
     if (count == 3) {
@@ -121,11 +152,69 @@ function addItem() {
         selectCardGroup.options[selectCardGroup.selectedIndex].value;
 
       if (valueCardGroup == "individ") {
-        alert("You choose Individual!");
-        //TODO Show card Search! (Dropdown search IMP)
-      } else if (valueCardGroup == "group") {
-        alert("You choose group!");
-        //TODO Show ban grouping categories.
+        var cardSearcher = document.getElementById("searchCardView");
+        searchInput.addEventListener("input", (e) => {
+          checkSearch();
+          value = e.target.value.toLowerCase();
+
+          users.forEach((user) => {
+            const isVisible =
+              user.name.toLowerCase().includes(value) ||
+              user.type.toLowerCase().includes(value);
+
+            user.element.classList.toggle("hide", !isVisible);
+          });
+          console.log(users);
+        });
+
+        const _myRequest = new Request(
+          "https://db.ygoprodeck.com/api/v7/cardinfo.php"
+        );
+        fetch(_myRequest)
+          .then((response) => response.json())
+          .then(({ data }) => {
+            users = data.map((user) => {
+              const card = userCardTemplate.content.cloneNode(true).children[0];
+              const header = card.querySelector("[data-header]");
+              const body = card.querySelector("[data-body]");
+              let no = card.querySelector("[data-no]");
+
+              /*CODE For Showing Images Has Been Disabled To Later Polishing~!*/
+              /*   let imgUrlTmplt =
+                   "https://storage.googleapis.com/ygoprodeck.com/pics_artgame/";*/
+
+              no.textContent = user.id;
+              header.textContent = user.name;
+              //   let imageElement = document.createElement("img");
+              //   imageElement.setAttribute("id", "card-thumb");
+              body.textContent = "";
+              //var imgSrc = imgUrlTmplt + user.id.toString() + ".jpg";
+              // imageElement.src = imgSrc;
+              //body.appendChild(imageElement);
+              userCardContainer.append(card);
+              // console.log(user.id);
+              card.addEventListener("click", function (event) {
+                event.preventDefault();
+                let idConverted = no.textContent.toString();
+                let searchField = (document.getElementById(
+                  "search-field"
+                ).value = idConverted);
+                _cardView.style.display = "none";
+              });
+              return { name: user.name, type: user.type, element: card };
+            });
+          });
+        cardSearcher.style = "block";
+
+        //TODO Add Dropdowns for filters ASAP!
+      } else if (valueCardGroup == "ctype") {
+        itemQuestions[7].style.display = "block";
+      } else if (valueCardGroup == "attr") {
+        itemQuestions[10].style.display = "block";
+      } else if (valueCardGroup == "category") {
+        itemQuestions[11].style.display = "block";
+      } else if (valueCardGroup == "mArch") {
+        itemQuestions[8].style.display = "block";
       }
 
       itemQuestions[3].style.display = "block"; //it should be the location!

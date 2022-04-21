@@ -1,0 +1,12 @@
+1- CardType Hex Code:
+https://github.com/Fluorohydride/ygopro-core/blob/master/common.h#L73
+======================
+2- Monster Type HexCode:
+https://github.com/Fluorohydride/ygopro-core/blob/master/common.h#L73
+======================
+3- Monster Archetype HexCode:
+https://gitlab.com/duelists-unite/config/-/blob/master/strings.conf#L89
+======================
+4- Monster Attribute HexCode: 
+https://github.com/Fluorohydride/ygopro-core/blob/master/common.h#L100
+======================

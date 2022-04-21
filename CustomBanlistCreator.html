@@ -96,7 +96,11 @@
               </div>
 
               <div id="banlistName" style="display: none">
-                <input type="text" placeholder="Enter banlist name.." />
+                <input
+                  type="text"
+                  id="nameBL"
+                  placeholder="Enter banlist name.."
+                />
               </div>
 
               <div id="limitation-selection" style="display: none">
@@ -132,12 +136,195 @@
               <div id="ind-selection" style="display: none">
                 <form>
                   <select id="card-group">
-                    <option value="individ">Individual.</option>
-                    <option value="group">Group.</option>
+                    <option value="individ">Search a specific card..</option>
+                    <option value="ctype">Card Type</option>
+                    <option value="attr">Monster Attribute</option>
+                    <option value="category">Category</option>
+                    <option value="mArch">Monster Archetype</option>
                   </select>
                 </form>
               </div>
 
+              <div id="searchCardView" style="display: none">
+                <div class="search-wrapper" id="cardSearchBar">
+                  <div class="container-mt5">
+                    <div class="row d-flex justify-content-center">
+                      <div class="col-md-6">
+                        <div class="card">
+                          <input
+                            class="form-control"
+                            type="search"
+                            id="search-field"
+                            placeholder="Please Enter Card Name.."
+                            data-search
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="div-cards">
+                  <div class="row d-flex justify-content-center">
+                    <div
+                      class="user-cards scroll"
+                      data-user-cards-container
+                    ></div>
+                    <template data-user-template>
+                      <div id="carddiv" class="card contentCards">
+                        <div class="header" data-header>Card Name.</div>
+                        <div class="body" data-body>
+                          Card Description / Card Image.
+                        </div>
+                        <div class="no" id="numb" data-no>
+                          Card Description / Card Image.
+                        </div>
+                      </div>
+                    </template>
+                  </div>
+                </div>
+              </div>
+
+              <!--@Group of Cards Filters@-->
+              <div id="ctype-selection" style="display: none">
+                <form>
+                  <select id="card-type">
+                    <option value="monster">Monster</option>
+                    <option value="spell">Spell</option>
+                    <option value="trap">Trap</option>
+                  </select>
+                </form>
+              </div>
+
+              <div id="mArch-selection" style="display: none">
+                <form>
+                  <select id="mArchetype">
+                    <option value="allyjustice">Ally of Justice</option>
+                    <option value="genex">Genex</option>
+                    <option value="rgenex">R-Genex</option>
+                    <option value="genexally">Genex Ally</option>
+                    <option value="amazoness">Amazoness</option>
+                    <option value="arcanaforce">Arcana Force</option>
+                    <option value="darkworld">Dark World</option>
+                    <option value="ancientgear">Ancient Gear</option>
+                    <option value="hero">Hero</option>
+                    <option value="elhero">Elemental Hero</option>
+                    <option value="evhero">Evil Hero</option>
+                    <option value="deshero">Destiny Hero</option>
+                    <option value="vishero">Vision Hero</option>
+                    <option value="mashero">Masked Hero</option>
+                    <option value="neos">Neos</option>
+                  </select>
+                </form>
+              </div>
+
+              <div id="mType-selection" style="display: none">
+                <form>
+                  <select id="mType">
+                    <option value="normal">Normal</option>
+                    <option value="effect">Effect</option>
+                    <option value="fusion">Fusion</option>
+                    <option value="ritual">Ritual</option>
+                    <option value="trapmonster">Trap Monster</option>
+                    <option value="spirit">Spirit</option>
+                    <option value="union">Union</option>
+                    <option value="dual">Dual</option>
+                    <option value="tuner">Tuner</option>
+                    <option value="synchro">Synchro</option>
+                    <option value="token">Token</option>
+                    <option value="quickplay">Quick Play</option>
+                    <option value="continuous">Continuous</option>
+                    <option value="equip">Equip</option>
+                    <option value="field">Field</option>
+                    <option value="counter">Counter</option>
+                    <option value="flip">Flip</option>
+                    <option value="toon">Toon</option>
+                    <option value="xyz">Xyz</option>
+                    <option value="pendulum">Pendulum</option>
+                    <option value="spsummon">SPSummon</option>
+                    <option value="link">Link</option>
+                  </select>
+                </form>
+              </div>
+
+              <div id="mRace-selection" style="display: none">
+                <form>
+                  <select id="mRace">
+                    <option value="racewarrior">Race Warrior</option>
+                    <option value="racespellcaster">Race Spellcaster</option>
+                    <option value="racefairy">Race Fairy</option>
+                    <option value="racefiend">Race Fiend</option>
+                    <option value="racezombie">Race Zombie</option>
+                    <option value="racemachine">Race Machine</option>
+                    <option value="raceaqua">Race Aqua</option>
+                    <option value="racepyro">Race Pyro</option>
+                    <option value="racerock">Race Rock</option>
+                    <option value="racewindbeast">Race Wind Beast</option>
+                    <option value="raceplant">Race Plant</option>
+                    <option value="raceinsect">Race Insect</option>
+                    <option value="racethunder">Race Thunder</option>
+                    <option value="racedragon">Race Dragon</option>
+                    <option value="racebeast">Race Beast</option>
+                    <option value="racebeastwarrior">Race Beast Warrior</option>
+                    <option value="racedino">Race Dinosaur</option>
+                    <option value="racefish">Race Fish</option>
+                    <option value="raceseaserpent">Race Sea Serpent</option>
+                    <option value="racereptile">Race Reptile</option>
+                    <option value="racepsycho">Race Psycho</option>
+                    <option value="racedivine">Race Divine</option>
+                    <option value="racecreatorgod">Race Creator God</option>
+                    <option value="racewyrm">Race Wyrm</option>
+                    <option value="racecyberse">Race Cyberse</option>
+                  </select>
+                </form>
+              </div>
+
+              <div id="attr-selection" style="display: none">
+                <form>
+                  <select id="attr">
+                    <option value="divine">Divine</option>
+                    <option value="dark">Dark</option>
+                    <option value="light">Light</option>
+                    <option value="earth">Earth</option>
+                    <option value="water">Water</option>
+                    <option value="fire">Fire</option>
+                    <option value="wind">Wind</option>
+                  </select>
+                </form>
+              </div>
+
+              <div id="cat-selection" style="display: none">
+                <form>
+                  <select id="category">
+                    <option value="skillcard">Skill Card.</option>
+                    <option value="spellspeedcard">Speed Spell Card.</option>
+                    <option value="bosscard">Boss Card</option>
+                    <option value="betacard">Beta Card</option>
+                    <option value="actioncard">Action Card</option>
+                    <option value="commandcard">Command Card</option>
+                    <option value="doublescript">Double Script</option>
+                    <option value="rushlegendary">Rush Legendary</option>
+                    <option value="preerrata">Pre Errata</option>
+                    <option value="darkcard">Dark Card</option>
+                    <option value="duellinks">Duel Links</option>
+                    <option value="rushcard">Rush Card</option>
+                    <option value="startcard">Start Card</option>
+                    <option value="onecard">One Card</option>
+                    <option value="twocard">Two Card</option>
+                    <option value="threecard">Three Card</option>
+                    <option value="levelzero">Level Zero</option>
+                    <option value="treatedas">Treated As</option>
+                    <option value="bluegod">Blue God</option>
+                    <option value="yellowgod">Yellow God</option>
+                    <option value="redgod">Red God</option>
+                    <option value="rushmax">Rush Max</option>
+                    <option value="sc">SC</option>
+                    <option value="pendulumffect">Pendulum Effect</option>
+                  </select>
+                </form>
+              </div>
+
+              <!--@@LocationSelection(OptionalDropDown)-->
               <div id="location-selection" style="display: none">
                 <form>
                   <select id="card-location">
@@ -196,6 +383,7 @@
 
     <!--@Scripts@-->
     <script src="BanlistCreator.js"></script>
+    <script src="FileSaver.js"></script>
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

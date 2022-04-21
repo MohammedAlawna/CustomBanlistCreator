@@ -17,6 +17,74 @@ body {
   display: flex;
   justify-content: center;
 }
+.user-cards {
+  display: grid;
+  /* grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); */
+  gap: 0.25rem;
+  margin: 1rem;
+}
+
+.scroll {
+  background-color: #3a4f76;
+  width: 735px;
+  height: 200px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  text-align: center;
+  padding: 5px;
+}
+
+#card-thumb {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: left;
+}
+
+.card {
+  border: 1px solid black;
+  background-color: white;
+  padding: 0.5rem;
+}
+
+.contentCards {
+  display: flex;
+  height: 100px;
+}
+
+.contentCards:hover {
+  background-color: #0d5375;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 20%;
+}
+
+#numb {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 80%;
+  color: black;
+}
+
+.card > .header {
+  margin-bottom: 0.25rem;
+}
+
+.card > .body {
+  font-size: 0.8 rem;
+  color: #777;
+}
+
+.hide {
+  display: none;
+}
 
 #limitation-selection {
   color: white;
@@ -24,6 +92,36 @@ body {
 }
 
 #ind-selection {
+  color: white;
+  padding: 5px;
+}
+
+#ctype-selection {
+  color: white;
+  padding: 5px;
+}
+
+#mArch-selection {
+  color: white;
+  padding: 5px;
+}
+
+#mType-selection {
+  color: white;
+  padding: 5px;
+}
+
+#mRace-selection {
+  color: white;
+  padding: 5px;
+}
+
+#attr-selection {
+  color: white;
+  padding: 5px;
+}
+
+#cat-selection {
   color: white;
   padding: 5px;
 }
@@ -60,4 +158,8 @@ textarea {
   overflow: auto;
   resize: vertical;
   color: white;
+}
+
+.header {
+  color: black;
 }
