@@ -1,5 +1,6 @@
 body {
-  background-image: url("https://i.imgur.com/cYCloJ8.jpg");
+  background-image: url("bg.jpg");
+  background-color: black;
   background-size: cover;
 }
 
@@ -114,6 +115,10 @@ body {
 #mRace-selection {
   color: white;
   padding: 5px;
+}
+
+#GenerateTextBtn {
+  text-align: center;
 }
 
 #attr-selection {

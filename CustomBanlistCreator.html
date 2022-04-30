@@ -34,14 +34,24 @@
             </button>
           </div>
           <div class="col-sm">
-            <!--onclick="importBanlist()"-->
+            <div id="importBL">
+              <input
+                id="inputBanlist"
+                onchange="ImportBanlist()"
+                class="btn btn-primary"
+                placeholder="Import banlist.."
+                name="import"
+                type="file"
+              />
+            </div>
+            <!--onclick="importBanlist()"
             <button
               type="button"
               onclick="ImportBanlist()"
               class="btn btn-primary"
             >
               Import Banlist
-            </button>
+            </button>-->
           </div>
         </div>
       </div>
@@ -60,12 +70,13 @@
             >
               Add Item
             </button>
+
             <button
               type="button"
-              onclick="removeItem()"
+              onclick="deleteSelected()"
               class="btn btn-danger removeItemBtn"
             >
-              Remove Item
+              Delete Item
             </button>
             <button
               type="button"
@@ -74,13 +85,29 @@
             >
               Clear Items
             </button>
-            <button
-              type="button"
-              onclick="randomItems()"
-              class="btn btn-secondary randomItemsBtn"
-            >
-              Random Items
-            </button>
+            <div class="btn-group" role="group">
+              <button
+                id="btnGroupDrop1"
+                type="button"
+                class="btn btn-secondary dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                Templates
+              </button>
+              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <a onclick="GetTCG()" class="dropdown-item" href="#">TCG</a>
+                <a onclick="GetOCG()" class="dropdown-item" href="#">OCG</a>
+                <a onclick="GetGOAT()" class="dropdown-item" href="#">GOAT</a>
+                <a onclick="GetTraditional()" class="dropdown-item" href="#"
+                  >Traditional</a
+                >
+                <a onclick="GetWorld()" class="dropdown-item" href="#">World</a>
+                <a onclick="GetSpeed()" class="dropdown-item" href="#">Speed</a>
+                <a onclick="GetRush()" class="dropdown-item" href="#">Rush</a>
+              </div>
+            </div>
 
             <div id="whiteListBox" style="display: none">
               <div class="form-check">
@@ -107,13 +134,18 @@
                 <form>
                   <select id="limitation">
                     <option value="limitation">Limitation.</option>
-                    <option value="requirement">Requirement.</option>
+                    <option value="+">Requirement.</option>
                   </select>
                 </form>
 
                 <div id="deckSizeBox" style="display: none">
                   <div class="form-check">
-                    <input type="checkbox" class="size-check-input" value="" />
+                    <input
+                      type="checkbox"
+                      id="deckLimitEnabled"
+                      class="size-check-input"
+                      value=""
+                    />
                     <label for="flexCheckDefault" class="form-check-label"
                       >Deck Size</label
                     >
@@ -136,6 +168,7 @@
               <div id="ind-selection" style="display: none">
                 <form>
                   <select id="card-group">
+                    <option value="nill" selected>Ban by..</option>
                     <option value="individ">Search a specific card..</option>
                     <option value="ctype">Card Type</option>
                     <option value="attr">Monster Attribute</option>
@@ -185,13 +218,24 @@
                 </div>
               </div>
 
+              <div id="noLimitDiv" style="display: none">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="noLimit"
+                  value="0"
+                  name="noLimit"
+                  min="1"
+                  max="3"
+                />
+              </div>
               <!--@Group of Cards Filters@-->
               <div id="ctype-selection" style="display: none">
                 <form>
                   <select id="card-type">
-                    <option value="monster">Monster</option>
-                    <option value="spell">Spell</option>
-                    <option value="trap">Trap</option>
+                    <option value="0x1">Monster</option>
+                    <option value="0x2">Spell</option>
+                    <option value="0x4">Trap</option>
                   </select>
                 </form>
               </div>
@@ -333,17 +377,24 @@
                     </option>
                     <option value="main">Main.</option>
                     <option value="extra">Extra.</option>
-                    <option value="me">Main or Extra.</option>
-                    <option value="ms">Main or Side.</option>
-                    <option value="es">Extra or Side.</option>
-                    <option value="mes">Main or Extra or Side.</option>
+                    <option value="mainorextra">Main or Extra.</option>
+                    <option value="mainorside">Main or Side.</option>
+                    <option value="extraorside">Extra or Side.</option>
+                    <option value="mainorextraorside">
+                      Main or Extra or Side.
+                    </option>
                   </select>
                 </form>
               </div>
 
               <!--onclick="Next()"-->
               <div class="row">
-                <button type="button" id="next" class="btn btn-dark">
+                <button
+                  type="button"
+                  onclick="nextQuestion()"
+                  id="next"
+                  class="btn btn-dark"
+                >
                   Next
                 </button>
                 <button
@@ -379,6 +430,15 @@
           <div class="col-md-3"></div>
         </div>
       </div>
+    </div>
+
+    <div id="GenerateTextBtn" style="display: none">
+      <button onclick="generateBanlist()" class="btn btn-success" type="button">
+        Generate Banlist
+      </button>
+      <button class="btn btn-danger" onclick="exportBanlist()" type="button">
+        Export Banlist
+      </button>
     </div>
 
     <!--@Scripts@-->
