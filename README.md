@@ -19,4 +19,5 @@ Guide
 - Should be added soon (as a video, or images, text or all-in-one) as we complete testing our tool making sure its ready to production!
 
 Screenshots
-![image](https://user-images.githubusercontent.com/88289155/175792238-dcb383d2-1ff3-4300-8ce7-b7f89800e625.png)
+- Should also be added soon in a way that shows the functionlities of the site and the guide site in which you'll refer to incase you were new or have
+any concerns regarding the tool.
