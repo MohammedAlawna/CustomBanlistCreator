@@ -14,6 +14,12 @@ for that card/item to be in the list.
 - An optional input is the "Location" which let you choose the place where the card(s)/item should be (Main, Extra, Side, main or extra and so on).
 - You'll find a full-guide that will introduce to the tool and how to use it to create your own banlists!
 
+# Technologies
+- HTML, CSS, Bootstrap.
+- Javascript.
+- VS Code. 
+- FileSaver library.
+
 # Guide
 - Should be added soon (as a video, or images, text or all-in-one) as we complete testing our tool making sure its ready to production!
 
