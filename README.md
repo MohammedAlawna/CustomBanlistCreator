@@ -1,5 +1,5 @@
 # CustomBanlistCreator
-Features
+# Features
 - This tool was created for YGOOmega and deployed to the Duelist Unit team. It's used to create custom banlists that the player can customize!
 - Players can access the tool from any web browser. Add the cards they like and choose the limitation for each then generate the new banlist. 
 - Templates: The tool provides you with an existing template of the most recent banlists (TCG, OCG, GOAT, etc..) and you will be able to
@@ -14,10 +14,9 @@ for that card/item to be in the list.
 - An optional input is the "Location" which let you choose the place where the card(s)/item should be (Main, Extra, Side, main or extra and so on).
 - You'll find a full-guide that will introduce to the tool and how to use it to create your own banlists!
 
-
-Guide
+# Guide
 - Should be added soon (as a video, or images, text or all-in-one) as we complete testing our tool making sure its ready to production!
 
-Screenshots
+# Screenshots
 - Should also be added soon in a way that shows the functionlities of the site and the guide site in which you'll refer to incase you were new or have
 any concerns regarding the tool.
