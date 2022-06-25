@@ -35,14 +35,15 @@
           </div>
           <div class="col-sm">
             <div id="importBL">
-              <input
+              <button
                 id="inputBanlist"
-                onchange="ImportBanlist()"
+                onclick="ImportBanlist()"
                 class="btn btn-primary"
                 placeholder="Import banlist.."
                 name="import"
-                type="file"
-              />
+              >
+                Import Banlist
+              </button>
             </div>
             <!--onclick="importBanlist()"
             <button
@@ -434,10 +435,10 @@
 
     <div id="GenerateTextBtn" style="display: none">
       <button onclick="generateBanlist()" class="btn btn-success" type="button">
-        Generate Banlist
+        Download Banlist
       </button>
       <button class="btn btn-danger" onclick="exportBanlist()" type="button">
-        Export Banlist
+        Copy To Clipboard
       </button>
     </div>
 

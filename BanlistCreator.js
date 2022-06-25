@@ -47,7 +47,33 @@ function CreateNewBanlist() {
   banListPreview.style.display = "flex";
 }
 
-let input = document.getElementById("inputBanlist");
+function ImportBanlist() {
+  let input = document.createElement("input");
+  input.type = "file";
+
+  input.onchange = (_) => {
+    // you can use this method to get file and perform respective operations
+    let files = input.files;
+
+    if (files.length == 0) return;
+
+    const file = files[0];
+
+    let reader = new FileReader();
+
+    reader.onload = (e) => {
+      const file = e.target.result;
+      const lines = file.split(/\r\n|\n/);
+      textArea.value = lines.join("\n");
+    };
+    reader.onerror = (e) => alert(e.target.error.name);
+    reader.readAsText(file);
+  };
+  input.click();
+  document.getElementById("nameBL").disabled = true;
+}
+
+/*let input = document.getElementById("inputBanlist");
 input.addEventListener("change", () => {
   let files = input.files;
 
@@ -64,7 +90,7 @@ input.addEventListener("change", () => {
   };
   reader.onerror = (e) => alert(e.target.error.name);
   reader.readAsText(file);
-});
+});*/
 
 /*Workflow: Click 'ImportBanlist' You'll import an already list with their data appearing on the banist view.
 function ImportBanlist() {
