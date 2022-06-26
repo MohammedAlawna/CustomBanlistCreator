@@ -2,7 +2,7 @@
 ![de2uant-41dcd4dc-35ad-4df1-bdff-342fa5d46613](https://user-images.githubusercontent.com/88289155/175792999-880785a2-65e2-451f-8dfa-fc2fbe2f318b.png)
 
 # Features
-- This tool was created for YGOOmega and deployed to the Duelist Unit team. It's used to create custom banlists that the player can customize!
+- This tool was created for YGOOmega and deployed to the Duelist Unite team. It's used to create custom banlists that the player can customize!
 - Players can access the tool from any web browser. Add the cards they like and choose the limitation for each then generate the new banlist. 
 - Templates: The tool provides you with an existing template of the most recent banlists (TCG, OCG, GOAT, etc..) and you will be able to
 customize/modify that template!
