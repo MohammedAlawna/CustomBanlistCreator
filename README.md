@@ -15,6 +15,8 @@ for that card/item to be in the list.
 - You can also enable the "DeckSize" which will allow you to restrict the number of cards in the deck into a specific number you choose. 
 - An optional input is the "Location" which let you choose the place where the card(s)/item should be (Main, Extra, Side, main or extra and so on).
 - You'll find a full-guide that will introduce to the tool and how to use it to create your own banlists!
+- The tool allows you to create a whitelist as well which means everything is banned except the cards below it which are defined with limitations.
+
 
 # Technologies
 - HTML, CSS, Bootstrap.
