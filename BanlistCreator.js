@@ -541,6 +541,7 @@ if(isDeckLimit) {
   if (valueCardGroup == "mArch") {
     var archType = document.getElementById("mArchetype");
     var archSelected = archType.options[archType.selectedIndex].value;
+    flagType = "@type " + archSelected;
     console.log(archSelected);
   }
   // if (valueCardGroup == "mType") { POSTPONED
