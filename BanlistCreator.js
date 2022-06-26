@@ -539,7 +539,9 @@ if(isDeckLimit) {
     console.log(flagType);
   }
   if (valueCardGroup == "mArch") {
-    console.log("Hello Nael Arch");
+    var archType = document.getElementById("mArchetype");
+    var archSelected = archType.options[archType.selectedIndex].value;
+    console.log(archSelected);
   }
   // if (valueCardGroup == "mType") { POSTPONED
   //   console.log("Monster Type!");
