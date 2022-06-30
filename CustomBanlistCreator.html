@@ -10,6 +10,19 @@
       integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
       crossorigin="anonymous"
     />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"
+      integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css"
+      integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg="
+      crossorigin="anonymous"
+    />
+
     <link rel="stylesheet" href="banlist.css" />
     <title>Banlist Creator</title>
   </head>
@@ -133,7 +146,7 @@
 
               <div id="limitation-selection" style="display: none">
                 <form>
-                  <select id="limitation">
+                  <select id="limitation" onchange="nextQuestion()">
                     <option value="limitation">Limitation.</option>
                     <option value="+">Requirement.</option>
                   </select>
@@ -142,6 +155,7 @@
                 <div id="deckSizeBox" style="display: none">
                   <div class="form-check">
                     <input
+                      onchange="nextQuestion()"
                       type="checkbox"
                       id="deckLimitEnabled"
                       class="size-check-input"
@@ -168,7 +182,7 @@
 
               <div id="ind-selection" style="display: none">
                 <form>
-                  <select id="card-group">
+                  <select id="card-group" onchange="nextQuestion()">
                     <option value="nill" selected>Ban by..</option>
                     <option value="individ">Search a specific card..</option>
                     <option value="ctype">Card Type</option>
@@ -233,7 +247,7 @@
               <!--@Group of Cards Filters@-->
               <div id="ctype-selection" style="display: none">
                 <form>
-                  <select id="card-type">
+                  <select id="card-type" onchange="nextQuestion()">
                     <option value="0x1">Monster</option>
                     <option value="0x2">Spell</option>
                     <option value="0x4">Trap</option>
@@ -243,7 +257,7 @@
 
               <div id="mArch-selection" style="display: none">
                 <form>
-                  <select id="mArchetype">
+                  <select id="mArchetype" onchange="nextQuestion()">
                     <option value="0x1">Ally of Justice</option>
                     <option value="0x2">Genex</option>
                     <option value="0x1002">R-Genex</option>
@@ -741,7 +755,7 @@
 
               <div id="mType-selection" style="display: none">
                 <form>
-                  <select id="mType">
+                  <select id="mType" onchange="nextQuestion()">
                     <option value="normal">Normal</option>
                     <option value="effect">Effect</option>
                     <option value="fusion">Fusion</option>
@@ -770,7 +784,7 @@
 
               <div id="mRace-selection" style="display: none">
                 <form>
-                  <select id="mRace">
+                  <select id="mRace" onchange="nextQuestion()">
                     <option value="racewarrior">Race Warrior</option>
                     <option value="racespellcaster">Race Spellcaster</option>
                     <option value="racefairy">Race Fairy</option>
@@ -802,7 +816,7 @@
 
               <div id="attr-selection" style="display: none">
                 <form>
-                  <select id="attr">
+                  <select id="attr" onchange="nextQuestion()">
                     <option value="divine">Divine</option>
                     <option value="dark">Dark</option>
                     <option value="light">Light</option>
@@ -816,7 +830,7 @@
 
               <div id="cat-selection" style="display: none">
                 <form>
-                  <select id="category">
+                  <select id="category" onchange="nextQuestion()">
                     <option value="skillcard">Skill Card.</option>
                     <option value="spellspeedcard">Speed Spell Card.</option>
                     <option value="bosscard">Boss Card</option>
@@ -848,7 +862,7 @@
               <!--@@LocationSelection(OptionalDropDown)-->
               <div id="location-selection" style="display: none">
                 <form>
-                  <select id="card-location">
+                  <select id="card-location" onchange="nextQuestion()">
                     <option value="nill" selected>
                       Choose your location (optional)
                     </option>
