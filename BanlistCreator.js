@@ -216,6 +216,20 @@ function ProcessQuestionSystem() {
 
       divCardCount.style.display = "block";
 
+      searchInput.addEventListener("input", (e) => {
+        checkSearch();
+        value = e.target.value.toLowerCase();
+
+        users.forEach((user) => {
+          const isVisible =
+            user.name.toLowerCase().includes(value) ||
+            user.type.toLowerCase().includes(value);
+
+          user.element.classList.toggle("hide", !isVisible);
+        });
+        console.log(users);
+      });
+
       const _myRequest = new Request(
         "https://db.ygoprodeck.com/api/v7/cardinfo.php"
       );
