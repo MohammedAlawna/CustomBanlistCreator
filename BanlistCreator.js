@@ -243,17 +243,17 @@ function ProcessQuestionSystem() {
             let no = card.querySelector("[data-no]");
 
             /*CODE For Showing Images Has Been Disabled To Later Polishing~!*/
-            /*   let imgUrlTmplt =
-                   "https://storage.googleapis.com/ygoprodeck.com/pics_artgame/";*/
+            let imgUrlTmplt =
+              "https://storage.googleapis.com/ygoprodeck.com/pics_artgame/";
 
             no.textContent = user.id;
             header.textContent = user.name;
-            //   let imageElement = document.createElement("img");
-            //   imageElement.setAttribute("id", "card-thumb");
+            let imageElement = document.createElement("img");
+            imageElement.setAttribute("id", "card-thumb");
             body.textContent = "";
-            //var imgSrc = imgUrlTmplt + user.id.toString() + ".jpg";
-            // imageElement.src = imgSrc;
-            //body.appendChild(imageElement);
+            var imgSrc = imgUrlTmplt + user.id.toString() + ".jpg";
+            imageElement.src = imgSrc;
+            body.appendChild(imageElement);
             userCardContainer.append(card);
             // console.log(user.id);
             card.addEventListener("click", function (event) {
