@@ -134,7 +134,7 @@ div#navbarSupportedContent {
 }
 
 .bg-dark {
-  background-color: #083145 !important;
+  background-color: #184a65 !important;
   --bs-bg-opacity: 0.5;
 }
 
@@ -185,4 +185,17 @@ div#navbarSupportedContent {
 #bottomDots {
   text-align: center;
   padding-top: 10px;
+}
+
+#contentBox {
+  width: 50%;
+  height: 100%;
+  background-color: #073249a6;
+  margin: 0 auto;
+  font-size: 20px;
+  color: white;
+}
+
+#textBox {
+  margin: 10px;
 }
