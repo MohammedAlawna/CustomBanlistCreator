@@ -32,13 +32,71 @@ let _cardView = document.getElementById("div-cards");
 let wholeCard = document.getElementById("carddiv");
 const userCardTemplate = document.querySelector("[data-user-template]");
 const userCardContainer = document.querySelector("[data-user-cards-container]");
-//let whiteListCheck = document.querySelector(".form-check-input").checked;
 var selectDeckLimit;
 var selectLimitation;
 
 var valueLimitation;
 var selectCardGroup, valueCardGroup;
 var selectCardLocation, valueCardLocation;
+
+function LoadCardDB() {
+  const _myRequest = new Request(
+    "https://db.ygoprodeck.com/api/v7/cardinfo.php"
+  );
+  fetch(_myRequest)
+    .then((response) => response.json())
+    .then(({ data }) => {
+      users = data.map((user) => {
+        const card = userCardTemplate.content.cloneNode(true).children[0];
+        const header = card.querySelector("[data-header]");
+        const body = card.querySelector("[data-body]");
+        let no = card.querySelector("[data-no]");
+
+        /*CODE For Showing Images Has Been Disabled To Later Polishing~!*/
+        let imgUrlTmplt =
+          "https://storage.googleapis.com/ygoprodeck.com/pics_artgame/";
+
+        no.textContent = user.id;
+        header.textContent = user.name;
+        let imageElement = document.createElement("img");
+        imageElement.setAttribute("id", "card-thumb");
+        body.textContent = "";
+        var imgSrc = imgUrlTmplt + user.id.toString() + ".jpg";
+        imageElement.src = imgSrc;
+        body.appendChild(imageElement);
+        userCardContainer.append(card);
+        // console.log(user.id);
+        card.addEventListener("click", function (event) {
+          event.preventDefault();
+          let idConverted = no.textContent.toString();
+          let searchField = (document.getElementById("search-field").value =
+            idConverted);
+          _cardView.style.display = "none";
+          flagType = idConverted;
+          console.log(flagType);
+          // banlistText += valueLimitation + idConverted;
+          //with number of limitation/requirment (1, 2, 3)
+          console.log(banlistText);
+        });
+        return { name: user.name, type: user.type, element: card };
+      });
+    });
+}
+LoadCardDB();
+
+searchInput.addEventListener("input", (e) => {
+  checkSearch();
+  value = e.target.value.toLowerCase();
+
+  users.forEach((user) => {
+    const isVisible =
+      user.name.toLowerCase().includes(value) ||
+      user.type.toLowerCase().includes(value);
+
+    user.element.classList.toggle("hide", !isVisible);
+  });
+  console.log(users);
+});
 
 //Workflow: Click 'CreateBanlist' You'll get a banlist view.
 function CreateNewBanlist() {
@@ -99,18 +157,14 @@ function ProcessQuestionSystem() {
 
     if (whiteListCheck && firstTime) {
       banlistText += "$whitelist" + "\n";
-      //alert("Its a whitelist!");
     } else if (!whiteListCheck) {
       banlistText;
-      //alert("It's not whitelist");
-      //@IGNORE don't add whitelist to text blob.
     }
     console.log(firstTime);
 
     console.log(banlistText);
     itemQuestions[1].style.display = "block"; //limitation
     itemQuestions[4].style.display = "block"; //decksize box..
-    // firstTime = false;
   }
 
   if (count == 2) {
@@ -149,13 +203,13 @@ function ProcessQuestionSystem() {
       itemQuestions[2].style.display = "none";
 
       /*1.Show Deck Limit Input
-                2. Don't show the card group question! (should be done in the else statement)
-                */
+      2. Don't show the card group question! (should be done in the else statement)
+       */
     } else {
-      //IF TeckBox.. then show card group.. etc.. if not show location directly.. (jump to count 4)
+      /*IF TeckBox.. then show card group.. etc.. if not show location
+       directly.. (jump to count 4)*/
       itemQuestions[2].style.display = "block";
     }
-    //console.log(banlistText);
     itemQuestions[12].style.display = "block";
   }
 
@@ -173,21 +227,7 @@ function ProcessQuestionSystem() {
 
       divCardCount.style.display = "block";
 
-      searchInput.addEventListener("input", (e) => {
-        checkSearch();
-        value = e.target.value.toLowerCase();
-
-        users.forEach((user) => {
-          const isVisible =
-            user.name.toLowerCase().includes(value) ||
-            user.type.toLowerCase().includes(value);
-
-          user.element.classList.toggle("hide", !isVisible);
-        });
-        console.log(users);
-      });
-
-      const _myRequest = new Request(
+      /*   const _myRequest = new Request(
         "https://db.ygoprodeck.com/api/v7/cardinfo.php"
       );
       fetch(_myRequest)
@@ -199,7 +239,7 @@ function ProcessQuestionSystem() {
             const body = card.querySelector("[data-body]");
             let no = card.querySelector("[data-no]");
 
-            /*CODE For Showing Images Has Been Disabled To Later Polishing~!*/
+            //CODE For Showing Images Has Been Disabled To Later Polishing~!
             let imgUrlTmplt =
               "https://storage.googleapis.com/ygoprodeck.com/pics_artgame/";
 
@@ -221,19 +261,18 @@ function ProcessQuestionSystem() {
               _cardView.style.display = "none";
               flagType = idConverted;
               console.log(flagType);
-              // banlistText += valueLimitation + idConverted; //with number of limitation/requirment (1, 2, 3)
+              // banlistText += valueLimitation + idConverted;
+              //with number of limitation/requirment (1, 2, 3)
               console.log(banlistText);
             });
             return { name: user.name, type: user.type, element: card };
           });
-        });
+        });*/
       cardSearcher.style = "block";
 
       //TODO Add Dropdowns for filters ASAP!
     } else if (valueCardGroup == "ctype") {
       itemQuestions[7].style.display = "block";
-
-      //  banlistText += valueLimitation + "@type " + cTypeSelection;
     } else if (valueCardGroup == "attr") {
       itemQuestions[10].style.display = "block";
     } else if (valueCardGroup == "category") {
@@ -271,35 +310,28 @@ function ProcessQuestionSystem() {
     quantity = " " + cardLimit;
 
     generateTextButton.style.display = "block";
-    //banlistText += " " + cardLimit;
 
     itemaddedBtn.disabled = false;
     nextBtn.disabled = true;
-
-    //console.log(banlistText);
   }
 }
 
 function nextQuestion() {
-  // console.log("HEy!");
   count++;
   ProcessQuestionSystem();
 }
 
 ProcessQuestionSystem();
 
-//checkSearch();
 function checkSearch() {
   if (searchField && searchField.value) {
     _cardView.style.display = "block";
-    // console.log('It has a value!');
   } else {
-    //console.log('no value there!');
     _cardView.style.display = "none";
   }
 }
 
-searchInput.addEventListener("input", (e) => {
+/*searchInput.addEventListener("input", (e) => {
   checkSearch();
   value = e.target.value.toLowerCase();
 
@@ -311,7 +343,7 @@ searchInput.addEventListener("input", (e) => {
     user.element.classList.toggle("hide", !isVisible);
   });
   console.log(users);
-});
+});*/
 
 //AddItemBtn: When you click it a questionaire will appear
 function addItem() {
