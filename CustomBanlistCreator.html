@@ -215,10 +215,15 @@
                 <div id="div-cards">
                   <div class="row d-flex justify-content-center">
                     <div
+                      id="userScroll"
                       class="user-cards scroll"
                       data-user-cards-container
                     ></div>
-                    <template data-user-template>
+                    <template
+                      id="templateCard"
+                      loading="lazy"
+                      data-user-template
+                    >
                       <div id="carddiv" class="card contentCards">
                         <div class="header" data-header>Card Name.</div>
                         <div class="body" data-body>

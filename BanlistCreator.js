@@ -60,6 +60,7 @@ function LoadCardDB() {
         header.textContent = user.name;
         let imageElement = document.createElement("img");
         imageElement.setAttribute("id", "card-thumb");
+        imageElement.setAttribute("loading", "lazy");
         body.textContent = "";
         var imgSrc = imgUrlTmplt + user.id.toString() + ".jpg";
         imageElement.src = imgSrc;
@@ -314,6 +315,11 @@ function ProcessQuestionSystem() {
     itemaddedBtn.disabled = false;
     nextBtn.disabled = true;
   }
+}
+
+function prevQuestion() {
+  count--;
+  ProcessQuestionSystem();
 }
 
 function nextQuestion() {
