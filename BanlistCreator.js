@@ -152,6 +152,10 @@ function ProcessQuestionSystem() {
     //console.log("The name is: " + banlistName);
     // whiteListCheck = document.getElementById("whiteListCheckBox");
 
+    if (banlistName == "") {
+      alert("Please enter a name for your banlist!");
+      return;
+    }
     if (firstTime) {
       banlistText = "!" + banlistName + "\n";
     }
@@ -454,6 +458,9 @@ function randomizeItems() {
 
 function clearItems() {
   let textArea = document.getElementById("listArea");
+  var banlist = document.getElementById("nameBL");
+  banlist.value = "";
+  banlist.disabled = false;
   textArea.value = "";
 }
 
