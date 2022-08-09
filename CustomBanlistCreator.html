@@ -34,89 +34,61 @@
 
     <!--Buttons Horizontal Row-->
     <div id="btns-grp">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm">
-            <!-- onclick="createBanlistView()" -->
-            <button
-              type="button"
-              onclick="CreateNewBanlist()"
-              class="btn btn-primary"
-            >
-              Create New Banlist
-            </button>
-          </div>
-          <div class="col-sm">
-            <div id="importBL">
-              <button
-                id="inputBanlist"
-                onclick="ImportBanlist()"
-                class="btn btn-primary"
-                placeholder="Import banlist.."
-                name="import"
-              >
-                Import Banlist
-              </button>
-            </div>
-            <!--onclick="importBanlist()"
-            <button
-              type="button"
-              onclick="ImportBanlist()"
-              class="btn btn-primary"
-            >
-              Import Banlist
-            </button>-->
-          </div>
-        </div>
-      </div>
+      <!-- onclick="createBanlistView()" -->
+      <button type="button" onclick="CreateNewBanlist()" class="btn btn-primary">
+        Create New Banlist
+      </button>
+
+      <button id="inputBanlist" onclick="ImportBanlist()" class="btn btn-primary" placeholder="Import banlist.." name="import">
+        Import Banlist
+      </button>
+
+      <!--onclick="importBanlist()"
+  <button
+    type="button"
+    onclick="ImportBanlist()"
+    class="btn btn-primary"
+  >
+    Import Banlist
+  </button>-->
+    </div>
+      <!-- onclick="createBanlistView()" -->
+   
+      <!--onclick="importBanlist()"
+  <button
+    type="button"
+    onclick="ImportBanlist()"
+    class="btn btn-primary"
+  >
+    Import Banlist
+  </button>-->
     </div>
 
     <!--Trial Animation Code-->
     <div id="banListPreview" style="display: none">
       <div id="listPreview">
         <div class="row">
-          <div class="col-md-4 col-sm-4"></div>
-          <div class="col-md-6 col-sm-6">
-            <button
-              type="button"
-              onclick="addItem()"
-              class="btn btn-primary addItemBtn"
-            >
+          
+          <div class="col-md">
+            <button type="button" onclick="addItem()" class="btn btn-primary addItemBtn">
               Add Item
             </button>
 
-            <button
-              type="button"
-              onclick="deleteSelected()"
-              class="btn btn-danger removeItemBtn"
-            >
+            <button type="button" onclick="deleteSelected()" class="btn btn-danger removeItemBtn">
               Delete Item
             </button>
-            <button
-              type="button"
-              onclick="clearItems()"
-              class="btn btn-warning clearItemsBtn"
-            >
+            <button type="button" onclick="clearItems()" class="btn btn-warning clearItemsBtn">
               Clear Items
             </button>
             <div class="btn-group" role="group">
-              <button
-                id="btnGroupDrop1"
-                type="button"
-                class="btn btn-secondary dropdown-toggle"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              >
+              <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Templates
               </button>
               <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                 <a onclick="GetTCG()" class="dropdown-item" href="#">TCG</a>
                 <a onclick="GetOCG()" class="dropdown-item" href="#">OCG</a>
                 <a onclick="GetGOAT()" class="dropdown-item" href="#">GOAT</a>
-                <a onclick="GetTraditional()" class="dropdown-item" href="#"
-                  >Traditional</a
-                >
+                <a onclick="GetTraditional()" class="dropdown-item" href="#">Traditional</a>
                 <a onclick="GetWorld()" class="dropdown-item" href="#">World</a>
                 <a onclick="GetSpeed()" class="dropdown-item" href="#">Speed</a>
                 <a onclick="GetRush()" class="dropdown-item" href="#">Rush</a>
@@ -882,9 +854,7 @@
                   </select>
                 </form>
               </div>
-
-              <!--onclick="Next()"-->
-              <div class="row">
+              <div class="btns-navig">
                 <button
                   type="button"
                   onclick="nextQuestion()"
@@ -903,39 +873,40 @@
                   Add
                 </button>
               </div>
-            </div>
+           
           </div>
-          <div class="col-md-2"></div>
+          
         </div>
 
-        <div class="row">
-          <div class="col-md-4 col-sm-4"></div>
-          <div class="col-md-6 col-sm-9">
-            <div class="flex-box">
-              <textarea
-                id="listArea"
-                readonly="readonly"
-                class="input shadow"
-                name="name"
-                rows="20"
-                cols="130"
-                placeholder="Banlist Will Appear Here~"
-              ></textarea>
-            </div>
-          </div>
-          <div class="col-md-3"></div>
+        <br>
+
+       
+      </div>
+
+      <div class="row">
+          
+        <div class="col-md-6">
+          
+            <textarea id="listArea" readonly="readonly" class="input shadow" name="name" rows="20" cols="130" placeholder="Banlist Will Appear Here~"></textarea>
+       
         </div>
+        
+      </div>
+
+      <div id="GenerateTextBtn" style="display: none">
+        <button onclick="generateBanlist()" class="btn btn-success" type="button">
+          Download Banlist
+        </button>
+        <button class="btn btn-danger" onclick="exportBanlist()" type="button">
+          Copy To Clipboard
+        </button>
       </div>
     </div>
 
-    <div id="GenerateTextBtn" style="display: none">
-      <button onclick="generateBanlist()" class="btn btn-success" type="button">
-        Download Banlist
-      </button>
-      <button class="btn btn-danger" onclick="exportBanlist()" type="button">
-        Copy To Clipboard
-      </button>
-    </div>
+  
+
+    
+    
 
     <!--@Scripts@-->
     <script src="BanlistCreator.js"></script>

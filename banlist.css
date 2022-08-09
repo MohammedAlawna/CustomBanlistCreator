@@ -25,6 +25,14 @@ body {
   margin: 1rem;
 }
 
+#listArea {
+  width: 400px;
+}
+
+.prev {
+  text-align: center;
+}
+
 .scroll {
   background-color: #3a4f76;
   width: 735px;
@@ -158,6 +166,8 @@ body {
 #whiteListBox {
   color: white;
   padding: 5px;
+  width: 380px;
+  text-align: center;
 }
 
 #deckSizeBox {
