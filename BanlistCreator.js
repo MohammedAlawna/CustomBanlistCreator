@@ -156,6 +156,7 @@ function ProcessQuestionSystem() {
       alert("Please enter a name for your banlist!");
       return;
     }
+
     if (firstTime) {
       banlistText = "!" + banlistName + "\n";
     }
@@ -165,6 +166,7 @@ function ProcessQuestionSystem() {
     } else if (!whiteListCheck) {
       banlistText;
     }
+
     console.log(firstTime);
 
     console.log(banlistText);
