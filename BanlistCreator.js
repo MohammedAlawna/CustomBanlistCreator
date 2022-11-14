@@ -53,8 +53,7 @@ function LoadCardDB() {
         let no = card.querySelector("[data-no]");
 
         /*CODE For Showing Images Has Been Disabled To Later Polishing~!*/
-        let imgUrlTmplt =
-          "https://storage.googleapis.com/ygoprodeck.com/pics_artgame/";
+        let imgUrlTmplt = "https://images.ygoprodeck.com/images/cards/";
 
         no.textContent = user.id;
         header.textContent = user.name;
