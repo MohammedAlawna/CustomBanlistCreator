@@ -468,7 +468,9 @@ function clearItems() {
 
 //Banlist Templates Functions
 function GetTCG() {
-  fetch("TCG.txt")
+  fetch(
+    "https://raw.githubusercontent.com/MohammedAlawna/CustomBanlistCreator/main/TCG.txt"
+  )
     .then((response) => response.text())
     .then((data) => {
       // Do something with your data
@@ -478,7 +480,9 @@ function GetTCG() {
 }
 
 function GetOCG() {
-  fetch("OCG.txt")
+  fetch(
+    "https://raw.githubusercontent.com/MohammedAlawna/CustomBanlistCreator/main/OCG.txt"
+  )
     .then((response) => response.text())
     .then((data) => {
       console.log(data);
@@ -487,7 +491,9 @@ function GetOCG() {
 }
 
 function GetGOAT() {
-  fetch("GOAT.txt")
+  fetch(
+    "https://raw.githubusercontent.com/MohammedAlawna/CustomBanlistCreator/main/GOAT.txt"
+  )
     .then((response) => response.text())
     .then((data) => {
       console.log(data);
@@ -496,7 +502,9 @@ function GetGOAT() {
 }
 
 function GetTraditional() {
-  fetch("Traditional.txt")
+  fetch(
+    "https://raw.githubusercontent.com/MohammedAlawna/CustomBanlistCreator/main/Traditional.txt"
+  )
     .then((response) => response.text())
     .then((data) => {
       console.log(data);
@@ -505,7 +513,9 @@ function GetTraditional() {
 }
 
 function GetWorld() {
-  fetch("World.txt")
+  fetch(
+    "https://raw.githubusercontent.com/MohammedAlawna/CustomBanlistCreator/main/World.txt"
+  )
     .then((response) => response.text())
     .then((data) => {
       console.log(data);
@@ -514,7 +524,9 @@ function GetWorld() {
 }
 
 function GetSpeed() {
-  fetch("Speed.txt")
+  fetch(
+    "https://raw.githubusercontent.com/MohammedAlawna/CustomBanlistCreator/main/Speed.txt"
+  )
     .then((response) => response.text())
     .then((data) => {
       console.log(data);
@@ -523,7 +535,9 @@ function GetSpeed() {
 }
 
 function GetTraditional() {
-  fetch("Traditional.txt")
+  fetch(
+    "https://raw.githubusercontent.com/MohammedAlawna/CustomBanlistCreator/main/Traditional.txt"
+  )
     .then((response) => response.text())
     .then((data) => {
       console.log(data);
@@ -532,7 +546,9 @@ function GetTraditional() {
 }
 
 function GetRush() {
-  fetch("Rush.txt")
+  fetch(
+    "https://raw.githubusercontent.com/MohammedAlawna/CustomBanlistCreator/main/Rush.txt"
+  )
     .then((response) => response.text())
     .then((data) => {
       console.log(data);
