@@ -130,6 +130,7 @@ function ImportBanlist() {
   input.click();
   document.getElementById("nameBL").disabled = true;
   textArea.style.display = "block";
+  ShowBanlistBox();
 }
 
 function ShowBanlistBox() {
