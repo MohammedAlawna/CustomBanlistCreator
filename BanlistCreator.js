@@ -129,6 +129,11 @@ function ImportBanlist() {
   };
   input.click();
   document.getElementById("nameBL").disabled = true;
+  textArea.style.display = "block";
+}
+
+function ShowBanlistBox() {
+  console.log("Just Showed Your Banlist!");
 }
 
 function ProcessQuestionSystem() {
