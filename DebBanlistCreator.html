@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/js/standalone/selectize.min.js"
+      integrity="sha256-+C0A5Ilqmu4QcSPxrlGpaZxJ04VjsRjKu+G82kl5UJk="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.12.6/css/selectize.bootstrap3.min.css"
+      integrity="sha256-ze/OEYGcFbPRmvCnrSeKbRTtjG4vGLHXgOqsyLFTRjg="
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="https://kudomion.co.uk/CustomBanlistCreator/banlist.css" />
+    <title>Banlist Creator</title>
+  </head>
+
+  <body>
+    <!--Main Logo & Toolbar
+    <div></div>
+    -->
+
+    <div style="text-align: center;">
+      <img src="https://i.imgur.com/dCXSj1a.png" alt="">
+    </div>
+
+    <!--Buttons Horizontal Row-->
+    <div id="btns-grp">
+      <!-- onclick="createBanlistView()" -->
+      <button type="button" onclick="CreateNewBanlist()" class="btn btn-primary">
+        Create New Banlist
+      </button>
+
+      <button id="inputBanlist" onclick="ImportBanlist()" class="btn btn-primary" placeholder="Import banlist.." name="import">
+        Import Banlist
+      </button>
+
+      <!--onclick="importBanlist()"
+  <button
+    type="button"
+    onclick="ImportBanlist()"
+    class="btn btn-primary"
+  >
+    Import Banlist
+  </button>-->
+    </div>
+      <!-- onclick="createBanlistView()" -->
+   
+      <!--onclick="importBanlist()"
+  <button
+    type="button"
+    onclick="ImportBanlist()"
+    class="btn btn-primary"
+  >
+    Import Banlist
+  </button>-->
+    </div>
+
+    <!--Trial Animation Code-->
+    <div id="banListPreview" style="display: none">
+      <div id="listPreview">
+        <div class="row">
+          
+          <div class="col-md">
+            <button type="button" onclick="addItem()" class="btn btn-primary addItemBtn">
+              Add Item
+            </button>
+
+            <button type="button" onclick="deleteSelected()" class="btn btn-danger removeItemBtn">
+              Delete Item
+            </button>
+            <button type="button" onclick="clearItems()" class="btn btn-warning clearItemsBtn">
+              Clear Items
+            </button>
+            <div class="btn-group" role="group">
+              <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Templates
+              </button>
+              <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                <a onclick="GetTCG()" class="dropdown-item" href="#">TCG</a>
+                <a onclick="GetOCG()" class="dropdown-item" href="#">OCG</a>
+                <a onclick="GetGOAT()" class="dropdown-item" href="#">GOAT</a>
+                <a onclick="GetTraditional()" class="dropdown-item" href="#">Traditional</a>
+                <a onclick="GetWorld()" class="dropdown-item" href="#">World</a>
+                <a onclick="GetSpeed()" class="dropdown-item" href="#">Speed</a>
+                <a onclick="GetRush()" class="dropdown-item" href="#">Rush</a>
+              </div>
+            </div>
+
+            <div id="whiteListBox" style="display: none">
+              <div class="form-check">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="whiteListCheckBox"
+                />
+                <label class="form-check-label" for="flexCheckDefault">
+                  Mark as whitelist
+                </label>
+              </div>
+
+              <div id="banlistName" style="display: none">
+                <input
+                  type="text"
+                  id="nameBL"
+                  placeholder="Enter banlist name.."
+                />
+              </div>
+
+              <div id="limitation-selection" style="display: none">
+                <form>
+                  <select id="limitation" onchange="nextQuestion()">
+                    <option value="limitation">Limitation.</option>
+                    <option value="+">Requirement.</option>
+                  </select>
+                </form>
+
+                <div id="deckSizeBox" style="display: none">
+                  <div class="form-check">
+                    <input
+                      onchange="nextQuestion()"
+                      type="checkbox"
+                      id="deckLimitEnabled"
+                      class="size-check-input"
+                      value=""
+                    />
+                    <label for="flexCheckDefault" class="form-check-label"
+                      >Deck Size</label
+                    >
+                  </div>
+                </div>
+
+                <div id="noDeckSize" style="display: none">
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="quantity"
+                    value="0"
+                    name="quantity"
+                    min="1"
+                    max="40"
+                  />
+                </div>
+              </div>
+
+              <div id="ind-selection" style="display: none">
+                <form>
+                  <select id="card-group" onchange="nextQuestion()">
+                    <option value="nill" selected>Ban by..</option>
+                    <option value="individ">Search a specific card..</option>
+                    <option value="ctype">Card Type</option>
+                    <option value="attr">Monster Attribute</option>
+                    <option value="category">Category</option>
+                    <option value="mArch">Monster Archetype</option>
+                  </select>
+                </form>
+              </div>
+
+              <div id="searchCardView" style="display: none">
+                <div class="search-wrapper" id="cardSearchBar">
+                  <div class="container-mt5">
+                    <div class="row d-flex justify-content-center">
+                      <div class="col-md-6">
+                        <div class="card">
+                          <input
+                            class="form-control"
+                            type="search"
+                            id="search-field"
+                            placeholder="Please Enter Card Name.."
+                            data-search
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="div-cards">
+                  <div class="row d-flex justify-content-center">
+                    <div
+                      id="userScroll"
+                      class="user-cards scroll"
+                      data-user-cards-container
+                    ></div>
+                    <template
+                      id="templateCard"
+                      loading="lazy"
+                      data-user-template
+                    >
+                      <div id="carddiv" class="card contentCards">
+                        <div class="header" data-header>Card Name.</div>
+                        <div class="body" data-body>
+                          Card Description / Card Image.
+                        </div>
+                        <div class="no" id="numb" data-no>
+                          Card Description / Card Image.
+                        </div>
+                      </div>
+                    </template>
+                  </div>
+                </div>
+              </div>
+
+              <div id="noLimitDiv" style="display: none">
+                <input
+                  type="number"
+                  class="form-control"
+                  id="noLimit"
+                  value="0"
+                  name="noLimit"
+                  min="1"
+                  max="3"
+                />
+              </div>
+              <!--@Group of Cards Filters@-->
+              <div id="ctype-selection" style="display: none">
+                <form>
+                  <select id="card-type" onchange="nextQuestion()">
+                    <option value="0x1">Monster</option>
+                    <option value="0x2">Spell</option>
+                    <option value="0x4">Trap</option>
+                  </select>
+                </form>
+              </div>
+
+              <div id="mArch-selection" style="display: none">
+                <form>
+                  <select id="mArchetype" onchange="nextQuestion()">
+                    <option value="0x1">Ally of Justice</option>
+                    <option value="0x2">Genex</option>
+                    <option value="0x1002">R-Genex</option>
+                    <option value="0x2002">Genex Ally</option>
+                    <option value="0x4">Amazoness</option>
+                    <option value="0x5">Arcana Force</option>
+                    <option value="0x6">Dark World</option>
+                    <option value="0x7">Ancient Gear</option>
+                    <option value="0x8">Hero</option>
+                    <option value="0x3008">Elemental Hero</option>
+                    <option value="0x6008">Evil Hero</option>
+                    <option value="0xc008">Destiny Hero</option>
+                    <option value="0x5008">Vision Hero</option>
+                    <option value="0xa008">Masked Hero</option>
+                    <option value="0x9">Neos</option>
+                    <option value="0xa">Lswarm</option>
+                    <option value="0x100a">Steelswarm</option>
+                    <option value="0xb">Infernity</option>
+                    <option value="0xc">Alien</option>
+                    <option value="0xd">Saber</option>
+                    <option value="0x100d">X-Saber</option>
+                    <option value="0x300d">XX-Saber</option>
+                    <option value="0x400d">Elementsaber</option>
+                    <option value="0xe">Watt</option>
+                    <option value="0xf">Ojama</option>
+                    <option value="0x10">Gusto</option>
+                    <option value="0x11">Karakuri</option>
+                    <option value="0x12">Frog</option>
+                    <option value="0x13">Meklord</option>
+                    <option value="0x3013">Meklord Emperor</option>
+                    <option value="0x5013">Meklord Astro</option>
+                    <option value="0x6013">Meklord Army</option>
+                    <option value="0x15">B.E.S.</option>
+                    <option value="0x16">Roid</option>
+                    <option value="0x1016">Vehicroid</option>
+                    <option value="0x2016">Speedroid</option>
+                    <option value="0x17">Synchro</option>
+                    <option value="0x1017">Synchron</option>
+                    <option value="0x2017">Synchro Dragon</option>
+                    <option value="0x18">Cloudian</option>
+                    <option value="0x19">Gladiator Beast</option>
+                    <option value="0x1a">Dark Scorpion</option>
+                    <option value="0x1b">Phantom Beast</option>
+                    <option value="0x101b">Mecha Phantom Beast</option>
+                    <option value="0x1d">Koa'ki Meiru</option>
+                    <option value="0x1e">Chrysalis</option>
+                    <option value="0x1f">Neo-Spacian</option>
+                    <option value="0x20">Shien</option>
+                    <option value="0x21">Earthbound Immortal</option>
+                    <option value="0x22">Jurrac</option>
+                    <option value="0x23">Malefic</option>
+                    <option value="0x24">Scrap</option>
+                    <option value="0x25">Iron Chain</option>
+                    <option value="0x26">Morphtronic</option>
+                    <option value="0x27">T.G.</option>
+                    <option value="0x28">Batteryman</option>
+                    <option value="0x29">Dragunity</option>
+                    <option value="0x2a">Naturia</option>
+                    <option value="0x2b">Ninja</option>
+                    <option value="0x102b">Armor Ninja</option>
+                    <option value="0x2c">Flamvell</option>
+                    <option value="0x2e">Gravekeeper</option>
+                    <option value="0x2f">Ice Barrier</option>
+                    <option value="0x30">Vylon</option>
+                    <option value="0x31">Fortune Lady</option>
+                    <option value="0x32">Volcanic</option>
+                    <option value="0x33">Blackwing</option>
+                    <option value="0x1033">Assault Blackwing</option>
+                    <option value="0x34">Crystal</option>
+                    <option value="0x1034">Crystal Beast</option>
+                    <option value="0x2034">Ultimate Crystal</option>
+                    <option value="0x35">Fabled</option>
+                    <option value="0x1035">The Fabled</option>
+                    <option value="0x36">Machina</option>
+                    <option value="0x37">Mist Valley</option>
+                    <option value="0x38">Lightsworn</option>
+                    <option value="0x39">Laval</option>
+                    <option value="0x3a">Gishki</option>
+                    <option value="0x3b">Red-Eyes</option>
+                    <option value="0x3c">Reptilianne</option>
+                    <option value="0x3d">Six Samurai</option>
+                    <option value="0x103d">Secret Six Samurai</option>
+                    <option value="0x3e">Worm</option>
+                    <option value="0x40">Forbidden One</option>
+                    <option value="0x41">LV</option>
+                    <option value="0x42">Nordic</option>
+                    <option value="0x3042">Nordic Ascendant</option>
+                    <option value="0x6042">Nordic Beast</option>
+                    <option value="0xa042">Nordic Alfar</option>
+                    <option value="0x5042">Nordic Relic</option>
+                    <option value="0x43">Junk</option>
+                    <option value="0x44">The Agent</option>
+                    <option value="0x45">Archfiend</option>
+                    <option value="0x1045">Red Dragon Archfiend</option>
+                    <option value="0x46">Fusion</option>
+                    <option value="0x46">Polymerization</option>
+                    <option value="0x1046">Fusion Dragon</option>
+                    <option value="0x47">Gem-</option>
+                    <option value="0x1047">Gem-Knight</option>
+                    <option value="0x48">Number</option>
+                    <option value="0x1048">Number C</option>
+                    <option value="0x5048">Number C39</option>
+                    <option value="0x49">Skyblaster</option>
+                    <option value="0x4a">Timelord</option>
+                    <option value="0x4b">Aesir</option>
+                    <option value="0x4c">Trap Hole</option>
+                    <option value="0x4e">Evol</option>
+                    <option value="0x304e">Evoltile</option>
+                    <option value="0x504e">Evolzar</option>
+                    <option value="0x604e">Evolsaur</option>
+                    <option value="0x4f">Buster</option>
+                    <option value="0x104f">/Assault Mode</option>
+                    <option value="0x50">Venom</option>
+                    <option value="0x1050">Starving Venom</option>
+                    <option value="0x51">Gadget</option>
+                    <option value="0x52">Guardian</option>
+                    <option value="0x53">Constellar</option>
+                    <option value="0x54">Gagaga</option>
+                    <option value="0x55">Photon</option>
+                    <option value="0x56">Inzektor</option>
+                    <option value="0x57">Resonator</option>
+                    <option value="0x58">Wind-Up</option>
+                    <option value="0x59">Gogogo</option>
+                    <option value="0x5a">Penguin</option>
+                    <option value="0x5b">Inmato</option>
+                    <option value="0x5c">Sphinx</option>
+                    <option value="0x60">Bamboo Sword</option>
+                    <option value="0x61">Ninjitsu Art</option>
+                    <option value="0x62">Toon</option>
+                    <option value="0x63">Reactor</option>
+                    <option value="0x64">Harpie</option>
+                    <option value="0x65">Infestation</option>
+                    <option value="0x66">Warrior</option>
+                    <option value="0x1066">Symphonic Warrior</option>
+                    <option value="0x2066">Magnet Warrior</option>
+                    <option value="0x67">Iron</option>
+                    <option value="0x68">Tin</option>
+                    <option value="0x69">Hieratic</option>
+                    <option value="0x6a">Butterspy</option>
+                    <option value="0x6b">Bounzer</option>
+                    <option value="0x6c">Lightray</option>
+                    <option value="0x6d">Djinn</option>
+                    <option value="0x306d">Divine Dragon</option>
+                    <option value="0x606d">Djinn of Rituals</option>
+                    <option value="0x6e">Prophecy</option>
+                    <option value="0x106e">Spellbook</option>
+                    <option value="0x6f">Heroic</option>
+                    <option value="0x106f">Heroic Challenger</option>
+                    <option value="0x70">Chronomaly</option>
+                    <option value="0x71">Madolche</option>
+                    <option value="0x72">Geargia</option>
+                    <option value="0x1072">Geargiano</option>
+                    <option value="0x73">Xyz</option>
+                    <option value="0x1073">CXyz</option>
+                    <option value="0x2073">Xyz Dragon</option>
+                    <option value="0x74">Mermail</option>
+                    <option value="0x75">Abyss-</option>
+                    <option value="0x76">Heraldic Beast</option>
+                    <option value="0x77">Atlantean</option>
+                    <option value="0x78">Nimble</option>
+                    <option value="0x79">Fire Fist</option>
+                    <option value="0x7a">Ignoble Knight</option>
+                    <option value="0x107a">Noble Knight</option>
+                    <option value="0x207a">Noble Arms</option>
+                    <option value="0x7b">Galaxy</option>
+                    <option value="0x107b">Galaxy-Eyes</option>
+                    <option value="0x307b">Galaxy-Eyes Tachyon</option>
+                    <option value="0x7c">Fire Formation</option>
+                    <option value="0x7d">Hazy</option>
+                    <option value="0x107d">Hazy Flame</option>
+                    <option value="0x7e">ZEXAL</option>
+                    <option value="0x107e">ZW -</option>
+                    <option value="0x207e">ZS -</option>
+                    <option value="0x7f">Utopi</option>
+                    <option value="0x107f">Utopia</option>
+                    <option value="0x207f">Utopic Future</option>
+                    <option value="0x80">Duston</option>
+                    <option value="0x81">Fire King</option>
+                    <option value="0x1081">Fire King Avatar</option>
+                    <option value="0x82">Dododo</option>
+                    <option value="0x83">Puppet</option>
+                    <option value="0x1083">Gimmick Puppet</option>
+                    <option value="0x84">Battlin' Boxer</option>
+                    <option value="0x85">Super-Defense</option>
+                    <option value="0x86">Star Seraph</option>
+                    <option value="0x87">Umbrals</option>
+                    <option value="0x88">Bujin</option>
+                    <option value="0x89">Hole</option>
+                    <option value="0x8a">Fascinating</option>
+                    <option value="0x108a">Traptrix</option>
+                    <option value="0x8b">Malicvorous</option>
+                    <option value="0x8d">Ghostrick</option>
+                    <option value="0x8e">Vampire</option>
+                    <option value="0x8f">Zubaba</option>
+                    <option value="0x90">Sylvan</option>
+                    <option value="0x91">Necrovally</option>
+                    <option value="0x92">Heraldry</option>
+                    <option value="0x93">Cyber</option>
+                    <option value="0x1093">Cyber Dragon</option>
+                    <option value="0x2093">Cyber Angel</option>
+                    <option value="0x4093">Cyberdark</option>
+                    <option value="0x94">Cybernetic</option>
+                    <option value="0x95">Rank-Up Magic</option>
+                    <option value="0x96">Fishborg</option>
+                    <option value="0x97">Artifact</option>
+                    <option value="0x98">Magician</option>
+                    <option value="0x99">Odd-Eyes</option>
+                    <option value="0x9a">Superheavy Samurai</option>
+                    <option value="0x109a">Superheavy Samurai Soul</option>
+                    <option value="0x9b">Melodious</option>
+                    <option value="0x109b">Melodious Maestra</option>
+                    <option value="0x9c">tellarknight</option>
+                    <option value="0x109c">Stellarknight</option>
+                    <option value="0x9d">Shaddoll</option>
+                    <option value="0x9e">Yang Zing</option>
+                    <option value="0x9f">Performapal</option>
+                    <option value="0xa0">Legendary Knight</option>
+                    <option value="0xa1">Legendary Dragon</option>
+                    <option value="0x10a2">Dark Magician</option>
+                    <option value="0x20a2">Magician Girl</option>
+                    <option value="0x30a2">Dark Magician Girl</option>
+                    <option value="0xa3">Stardust</option>
+                    <option value="0xa4">Kuriboh</option>
+                    <option value="0x10a4">Winged Kuriboh</option>
+                    <option value="0xa5">Change</option>
+                    <option value="0xa6">Sprout</option>
+                    <option value="0xa7">Artorigus</option>
+                    <option value="0xa8">Laundsallyn</option>
+                    <option value="0xa9">Fluffal</option>
+                    <option value="0xaa">Qli</option>
+                    <option value="0x10aa">Apoqli</option>
+                    <option value="0xab">Deskbot</option>
+                    <option value="0xac">Goblin</option>
+                    <option value="0xad">Frightfur</option>
+                    <option value="0xae">Dark Contract</option>
+                    <option value="0xaf">D/D</option>
+                    <option value="0x10af">D/D/D</option>
+                    <option value="0xb0">Gottoms</option>
+                    <option value="0xb1">Burning Abyss</option>
+                    <option value="0xb2">U.A.</option>
+                    <option value="0xb3">Yosenju</option>
+                    <option value="0xb4">Nekroz</option>
+                    <option value="0xb5">Ritual Beast</option>
+                    <option value="0x10b5">Ritual Beast Tamer</option>
+                    <option value="0x20b5">Spiritual Beast</option>
+                    <option value="0x40b5">Ritual Beast Ulti</option>
+                    <option value="0xb6">Outer Entity</option>
+                    <option value="0xb7">Elder Entity</option>
+                    <option value="0xb8">Old Entity</option>
+                    <option value="0xb9">Blaze Accelerator</option>
+                    <option value="0xba">Raidraptor</option>
+                    <option value="0xbb">Infernoid</option>
+                    <option value="0xbc">Jinzo</option>
+                    <option value="0xbd">Gaia The Fierce Knight</option>
+                    <option value="0xbe">Monarch</option>
+                    <option value="0xbf">Charmer</option>
+                    <option value="0xc0">Possessed</option>
+                    <option value="0x10c0">Familiar-Possessed</option>
+                    <option value="0xc1">PSY-Frame</option>
+                    <option value="0x10c1">PSY-Framegear</option>
+                    <option value="0xc2">Power Tool</option>
+                    <option value="0xc3">Edge Imp</option>
+                    <option value="0xc4">Zefra</option>
+                    <option value="0xc5">Void</option>
+                    <option value="0xc6">Performage</option>
+                    <option value="0xc7">Dracoslayer</option>
+                    <option value="0xc8">Igknight</option>
+                    <option value="0xc9">Aromage</option>
+                    <option value="0xca">Empowered Warrior</option>
+                    <option value="0xcb">Aether</option>
+                    <option value="0xcc">Prediction Princess</option>
+                    <option value="0xcd">Aquaactress</option>
+                    <option value="0xce">Aquarium</option>
+                    <option value="0xcf">Chaos</option>
+                    <option value="0x10cf">Black Luster Soldier</option>
+                    <option value="0xd0">Majespecter</option>
+                    <option value="0xd1">Graydle</option>
+                    <option value="0xd2">Kozmo</option>
+                    <option value="0xd3">Kaiju</option>
+                    <option value="0xd4">Paleozoic</option>
+                    <option value="0xd5">Dante</option>
+                    <option value="0xd7">Destruction Sword</option>
+                    <option value="0xd8">Dinomist</option>
+                    <option value="0xd9">Shiranui</option>
+                    <option value="0x10d9">Shiranui Spectralsword</option>
+                    <option value="0xda">Dracoverlord</option>
+                    <option value="0xdb">Phantom Knights</option>
+                    <option value="0x10db">The Phantom Knights</option>
+                    <option value="0xdc">Super Quant</option>
+                    <option value="0x10dc">Super Quantum</option>
+                    <option value="0x20dc">Super Quantal Mech Beast</option>
+                    <option value="0xdd">Blue-Eyes</option>
+                    <option value="0xde">Exodia</option>
+                    <option value="0xdf">Lunalight</option>
+                    <option value="0xe0">Amorphage</option>
+                    <option value="0xe1">Metalphosis</option>
+                    <option value="0xe2">Tramid</option>
+                    <option value="0xe3">Cubic</option>
+                    <option value="0xe4">Celtic Guard</option>
+                    <option value="0xe5">Cipher</option>
+                    <option value="0x10e5">Cipher Dragon</option>
+                    <option value="0xe6">Flower Cardian</option>
+                    <option value="0xe7">Silent Swordsman</option>
+                    <option value="0xe8">Silent Magician</option>
+                    <option value="0xe9">Magna Warrior</option>
+                    <option value="0xea">Crystron</option>
+                    <option value="0xeb">Chemical Beast</option>
+                    <option value="0xec">Abyss</option>
+                    <option value="0x10ec">Abyss Actor</option>
+                    <option value="0x20ec">Abyss Script</option>
+                    <option value="0xed">Subterror</option>
+                    <option value="0x10ed">Subterror Behemoth</option>
+                    <option value="0xee">SPYRAL</option>
+                    <option value="0x10ee">SPYRAL GEAR</option>
+                    <option value="0x20ee">SPYRAL MISSION</option>
+                    <option value="0xef">Darklord</option>
+                    <option value="0xf0">Windwitch</option>
+                    <option value="0xf1">Zoodiac</option>
+                    <option value="0xf2">Pendulum</option>
+                    <option value="0x10f2">Pendulum Dragon</option>
+                    <option value="0x20f2">Pendulumgraph</option>
+                    <option value="0xf3">Preda</option>
+                    <option value="0x10f3">Predaplant</option>
+                    <option value="0xf4">Invoked</option>
+                    <option value="0xf5">Gandora</option>
+                    <option value="0xf6">Skyscraper</option>
+                    <option value="0xf7">Lyrilusc</option>
+                    <option value="0xf8">Supreme King</option>
+                    <option value="0x10f8">Supreme King Gate</option>
+                    <option value="0x20f8">Supreme King Dragon</option>
+                    <option value="0xf9">True King</option>
+                    <option value="0xf9">True Draco</option>
+                    <option value="0xfa">Mythic Radiance Dragon</option>
+                    <option value="0xfb">Trickstar</option>
+                    <option value="0xfc">Gouki</option>
+                    <option value="0xfd">World Chalice</option>
+                    <option value="0xfe">World Legacy</option>
+                    <option value="0xff">Clear Wing</option>
+                    <option value="0x100">Bonding</option>
+                    <option value="0x101">code Talker</option>
+                    <option value="0x102">Rokket</option>
+                    <option value="0x103">Altergeist</option>
+                    <option value="0x104">Krawler</option>
+                    <option value="0x105">Metaphys</option>
+                    <option value="0x106">Vendread</option>
+                    <option value="0x107">F.A.</option>
+                    <option value="0x108">Magical Musket</option>
+                    <option value="0x109">The Weather</option>
+                    <option value="0x10a">Parshath</option>
+                    <option value="0x10b">Tindangle</option>
+                    <option value="0x10c">Mekk-Knight</option>
+                    <option value="0x10d">Mythical Beast</option>
+                    <option value="0x10e">Evolution Pill</option>
+                    <option value="0x10f">Borrel</option>
+                    <option value="0x110">Relinquished</option>
+                    <option value="0x1110">Eyes Restrict</option>
+                    <option value="0x111">Armed Dragon</option>
+                    <option value="0x112">Knightmare</option>
+                    <option value="0x113">Elemental Lord</option>
+                    <option value="0x114">Fur Hire</option>
+                    <option value="0x115">Sky Striker</option>
+                    <option value="0x1115">Sky Striker Ace</option>
+                    <option value="0x116">Crusadia</option>
+                    <option value="0x117">Impcantation</option>
+                    <option value="0x118">Cynet</option>
+                    <option value="0x119">Salamangreat</option>
+                    <option value="0x11a">Dinowrestler</option>
+                    <option value="0x11b">Orcust</option>
+                    <option value="0x11c">Thunder Dragon</option>
+                    <option value="0x11d">Forbidden</option>
+                    <option value="0x11e">Danger!</option>
+                    <option value="0x11f">Nephthys</option>
+                    <option value="0x120">Prank-Kids</option>
+                    <option value="0x121">Mayakashi</option>
+                    <option value="0x122">Valkyrie</option>
+                    <option value="0x123">Rose</option>
+                    <option value="0x1123">Rose Dragon</option>
+                    <option value="0x124">Machine Angel</option>
+                    <option value="0x125">Smile</option>
+                    <option value="0x126">Time Thief</option>
+                    <option value="0x127">Infinitrack</option>
+                    <option value="0x128">Witchcrafter</option>
+                    <option value="0x129">Evil Eye</option>
+                    <option value="0x12a">Endymion</option>
+                    <option value="0x12b">Marincess</option>
+                    <option value="0x12c">Tenyi</option>
+                    <option value="0x12d">Simorgh</option>
+                    <option value="0x12e">Fortune Fairy</option>
+                    <option value="0x12f">Battlewasp</option>
+                    <option value="0x130">Unchained</option>
+                    <option value="0x1130">Unchained Soul</option>
+                    <option value="0x131">Dream Mirror</option>
+                    <option value="0x132">Mathmech</option>
+                    <option value="0x133">Dragonmaid</option>
+                    <option value="0x134">Generaider</option>
+                    <option value="0x135">@Ignister</option>
+                    <option value="0x136">A.I.</option>
+                    <option value="0x137">Ancient Warriors</option>
+                    <option value="0x138">Megalith</option>
+                    <option value="0x139">Palladium Oracle</option>
+                    <option value="0x13a">Onomat</option>
+                    <option value="0x13b">Rebellion</option>
+                    <option value="0x13c">Codebreaker</option>
+                    <option value="0x13d">Nemesis</option>
+                    <option value="0x13e">Barbaros</option>
+                    <option value="0x13f">Plunder Patroll</option>
+                    <option value="0x140">Adamancipator</option>
+                    <option value="0x141">Rikka</option>
+                    <option value="0x142">Eld</option>
+                    <option value="0x1142">Eldlich</option>
+                    <option value="0x2142">Eldlixir</option>
+                    <option value="0x143">Golden Land</option>
+                    <option value="0x144">Phantasm</option>
+                    <option value="0x145">Dogmatika</option>
+                    <option value="0x146">Melffy</option>
+                    <option value="0x147">Potan</option>
+                    <option value="0x148">Roland</option>
+                    <option value="0x149">Fossil</option>
+                    <option value="0x14a">Numeron</option>
+                    <option value="0x114a">Numeron Gate</option>
+                    <option value="0x14b">Appliancer</option>
+                    <option value="0x14c">Spiritual Art</option>
+                    <option value="0x314c">Spiritual Earth Art</option>
+                    <option value="0x514c">Spiritual Water Art</option>
+                    <option value="0x614c">Spiritual Fire Art</option>
+                    <option value="0x914c">Spiritual Wind Art</option>
+                    <option value="0xa14c">Spiritual Light Art</option>
+                    <option value="0xc14c">Dark Spirit Art</option>
+                    <option value="0x14d">Tri-Brigade</option>
+                    <option value="0x14e">Virtual World</option>
+                    <option value="0x114e">Virtual World Gate</option>
+                    <option value="0x14f">Duel Avatar</option>
+                    <option value="0x150">Magistus</option>
+                    <option value="0x151">Twin</option>
+                    <option value="0x1151">Live☆Twin</option>
+                    <option value="0x2151">Evil★Twin</option>
+                    <option value="0x152">Ki-sikil</option>
+                    <option value="0x153">Lil-la</option>
+                    <option value="0x154">Drytron</option>
+                    <option value="0x155">Springans</option>
+                    <option value="0x156">Security Force</option>
+                    <option value="0x157">Myutant</option>
+                    <option value="0x158">サン</option>
+                    <option value="0x1158">Sunvine</option>
+                    <option value="0x2158">Sunavalon</option>
+                    <option value="0x159">Starry Knight</option>
+                    <option value="0x15a">Doll Monster</option>
+                    <option value="0x15b">Amazement</option>
+                    <option value="0x15c">Attraction</option>
+                    <option value="0x15d">Branded</option>
+                    <option value="0x15e">Rank-Down-Magic</option>
+                    <option value="0x15f">War Rock</option>
+                    <option value="0x160">Materiactor</option>
+                    <option value="0x161">Ogdoadic</option>
+                    <option value="0x162">Solfachord</option>
+                    <option value="0x163">Ursarctic</option>
+                    <option value="0x164">Despia</option>
+                    <option value="0x165">Magikey</option>
+                    <option value="0x166">Suship</option>
+                    <option value="0x1167">Mystical Beast of the Forest</option>
+                    <option value="0x2167">
+                      Mystical Spirit of the Forest
+                    </option>
+                    <option value="0x168">Stealth Kragen</option>
+                    <option value="0x169">Numerounius</option>
+                    <option value="0x16c">Icejade</option>
+                    <option value="0x16d">Floowandereeze</option>
+                    <option value="0x16e">Topologic</option>
+                    <option value="0x16f">Hyperion</option>
+                    <option value="0x170">Beetrooper</option>
+                    <option value="0x171">P.U.N.K.</option>
+                    <option value="0x172">Exorsister</option>
+                    <option value="0x173">Dinorphia</option>
+                    <option value="0x174">Lady of Lament</option>
+                    <option value="0x175">Seven Emperors</option>
+                    <option value="0x176">Barian's</option>
+                    <option value="0x177">Kairyu-Shin</option>
+                    <option value="0x178">Sea Stealth</option>
+                    <option value="0x179">Therions</option>
+                    <option value="0x17a">Scareclaw</option>
+                    <option value="0x17b">Battleguard</option>
+                    <option value="0x17c">Libromancer</option>
+                    <option value="0x17d">Valiants</option>
+                    <option value="0x17e">Labrynth</option>
+                    <option value="0x117e">Welcome Labrynth</option>
+                    <option value="0x17f">Mysterune</option>
+                    <option value="0x180">Splight</option>
+                    <option value="0x181">Tearalaments</option>
+                    <option value="0x182">Vernalizer Fairy</option>
+                    <option value="0x183">Mokey Mokey</option>
+                    <option value="0x184">Wingman</option>
+                  </select>
+                </form>
+              </div>
+
+              <div id="mType-selection" style="display: none">
+                <form>
+                  <select id="mType" onchange="nextQuestion()">
+                    <option value="0x10">Normal</option>
+                    <option value="0x20">Effect</option>
+                    <option value="0x40">Fusion</option>
+                    <option value="0x80">Ritual</option>
+                    <option value="0x100">Trap Monster</option>
+                    <option value="0x200">Spirit</option>
+                    <option value="0x400">Union</option>
+                    <option value="0x800">Dual</option>
+                    <option value="0x1000">Tuner</option>
+                    <option value="0x2000">Synchro</option>
+                    <option value="0x4000">Token</option>
+                    <option value="0x10000">Quick Play</option>
+                    <option value="0x20000">Continuous</option>
+                    <option value="0x40000">Equip</option>
+                    <option value="0x80000">Field</option>
+                    <option value="0x100000">Counter</option>
+                    <option value="0x200000">Flip</option>
+                    <option value="0x400000">Toon</option>
+                    <option value="0x800000">Xyz</option>
+                    <option value="0x1000000">Pendulum</option>
+                    <option value="0x2000000">SPSummon</option>
+                    <option value="0x4000000">Link</option>
+                  </select>
+                </form>
+              </div>
+
+              <div id="mRace-selection" style="display: none">
+                <form>
+                  <select id="mRace" onchange="nextQuestion()">
+                    <option value="0x1">Race Warrior</option>
+                    <option value="0x2">Race Spellcaster</option>
+                    <option value="0x4">Race Fairy</option>
+                    <option value="0x8">Race Fiend</option>
+                    <option value="0x10">Race Zombie</option>
+                    <option value="0x20">Race Machine</option>
+                    <option value="0x40">Race Aqua</option>
+                    <option value="0x80">Race Pyro</option>
+                    <option value="0x100">Race Rock</option>
+                    <option value="0x200">Race Wind Beast</option>
+                    <option value="0x400">Race Plant</option>
+                    <option value="0x800">Race Insect</option>
+                    <option value="0x1000">Race Thunder</option>
+                    <option value="0x2000">Race Dragon</option>
+                    <option value="0x4000">Race Beast</option>
+                    <option value="0x8000">Race Beast Warrior</option>
+                    <option value="0x10000">Race Dinosaur</option>
+                    <option value="0x20000">Race Fish</option>
+                    <option value="0x40000">Race Sea Serpent</option>
+                    <option value="0x80000">Race Reptile</option>
+                    <option value="0x100000">Race Psycho</option>
+                    <option value="0x200000">Race Divine</option>
+                    <option value="0x400000">Race Creator God</option>
+                    <option value="0x800000">Race Wyrm</option>
+                    <option value="0x1000000">Race Cyberse</option>
+                  </select>
+                </form>
+              </div>
+
+              <div id="attr-selection" style="display: none">
+                <form>
+                  <select id="attr" onchange="nextQuestion()">
+                    <option value="0x40">Divine</option>
+                    <option value="0x20">Dark</option>
+                    <option value="0x10">Light</option>
+                    <option value="0x01">Earth</option>
+                    <option value="0x02">Water</option>
+                    <option value="0x04">Fire</option>
+                    <option value="0x08">Wind</option>
+                  </select>
+                </form>
+              </div>
+
+              <div id="cat-selection" style="display: none">
+                <form>
+                  <select id="category" onchange="nextQuestion()">
+                    <option value="0x1">Skill Card.</option>
+                    <option value="0x2">Speed Spell Card.</option>
+                    <option value="0x4">Boss Card</option>
+                    <option value="0x8">Beta Card</option>
+                    <option value="0x10">Action Card</option>
+                    <option value="0x20">Command Card</option>
+                    <option value="0x40">Double Script</option>
+                    <option value="0x80">Rush Legendary</option>
+                    <option value="0x100">Pre Errata</option>
+                    <option value="0x200">Dark Card</option>
+                    <option value="0x400">Duel Links</option>
+                    <option value="0x800">Rush Card</option>
+                    <option value="0x1000">Start Card</option>
+                    <option value="0x2000">One Card</option>
+                    <option value="0x4000">Two Card</option>
+                    <option value="0x8000">Three Card</option>
+                    <option value="0x10000">Level Zero</option>
+                    <option value="0x20000">Treated As</option>
+                    <option value="0x40000">Blue God</option>
+                    <option value="0x80000">Yellow God</option>
+                    <option value="0x100000">Red God</option>
+                    <option value="0x200000">Rush Max</option>
+                    <option value="0x400000">SC</option>
+                    <option value="0x800000">Pendulum Effect</option>
+                  </select>
+                </form>
+              </div>
+
+              <!--@@LocationSelection(OptionalDropDown)-->
+              <div id="location-selection" style="display: none">
+                <form>
+                  <select id="card-location" onchange="nextQuestion()">
+                    <option value="" selected>
+                      Choose your location (optional)
+                    </option>
+                    <option value="main">Main.</option>
+                    <option value="extra">Extra.</option>
+                    <option value="mainorextra">Main or Extra.</option>
+                    <option value="mainorside">Main or Side.</option>
+                    <option value="extraorside">Extra or Side.</option>
+                    <option value="mainorextraorside">
+                      Main or Extra or Side.
+                    </option>
+                  </select>
+                </form>
+              </div>
+              <div class="btns-navig">
+                <button
+                  type="button"
+                  onclick="nextQuestion()"
+                  id="next"
+                  class="btn btn-dark"
+                >
+                  Next
+                </button>
+                <button
+                  type="button"
+                  onclick="applyItem()"
+                  id="itemAddedBtn"
+                  class="btn btn-primary"
+                  disabled
+                >
+                  Add
+                </button>
+              </div>
+           
+          </div>
+          
+        </div>
+
+        <br>
+
+       
+      </div>
+
+      <div class="row">
+          
+        <div class="col-md-6">
+          
+            <textarea id="listArea" readonly="readonly" class="input shadow" name="name" rows="20" cols="130" placeholder="Banlist Will Appear Here~"></textarea>
+       
+        </div>
+        
+      </div>
+
+      <div id="GenerateTextBtn" style="display: block">
+        <button onclick="generateBanlist()" class="btn btn-success" type="button">
+          Download Banlist
+        </button>
+        <button class="btn btn-danger" onclick="exportBanlist()" type="button">
+          Copy To Clipboard
+        </button>
+      </div>
+    </div>
+
+
+    <!--@Scripts@-->
+    <script src="BanlistCreator.js"></script>
+    <script src="https://kudomion.co.uk/CustomBanlistCreator/FileSaver.js"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

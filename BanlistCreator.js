@@ -129,6 +129,8 @@ function ImportBanlist() {
   };
   input.click();
   document.getElementById("nameBL").disabled = true;
+  let banListPreview = document.getElementById("banListPreview");
+  banListPreview.style.display = "flex";
   textArea.style.display = "block";
   ShowBanlistBox();
 }
