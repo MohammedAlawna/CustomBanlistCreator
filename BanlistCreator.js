@@ -65,7 +65,7 @@ function LoadCardDB() {
         imageElement.src = imgSrc;
         body.appendChild(imageElement);
         userCardContainer.append(card);
-        // console.log(user.id);
+        console.log(data);
         card.addEventListener("click", function (event) {
           event.preventDefault();
           let idConverted = no.textContent.toString();
